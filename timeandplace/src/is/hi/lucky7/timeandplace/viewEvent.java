@@ -41,12 +41,13 @@ public class viewEvent extends Activity{
 			}
 		});
 	
-		private CharacterSequence printCursor() 
-		{
-			startManagingCursor(cur);
-			String[] from = new String[] { DBAdapter.colName};
-			int[] to = new int[] { R.id.label };
-			SimpleCursorAdapter simp = new SimpleCursorAdapter(this, R.layout.event_row, cur, from, to);
-		}
+//		private CharacterSequence printCursor() 
+//		{
+// 		startManagingCursor(cur);
+// 		String[] from = new String[] { DBAdapter.colName};
+//			int[] to = new int[] { R.id.label };
+//			SimpleCursorAdapter simp = new SimpleCursorAdapter(this, R.layout.event_row, cur, from, to);
+//		}
 	}
 }
+ 

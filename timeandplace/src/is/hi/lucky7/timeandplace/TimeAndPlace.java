@@ -16,8 +16,15 @@ public class TimeAndPlace extends Activity {
         
         final Button addButton = (Button) findViewById(R.id.addButton);
         final Button viewButton = (Button) findViewById(R.id.viewButton);
+        }
+    public void AddEvent(View view) {
+		// Switch to addEvent screen:
+		Intent addevent = new Intent(getApplicationContext(), 
+				addEvent.class);
+		startActivity(addevent);
+    }
         
-        addButton.setOnClickListener(new View.OnClickListener() {
+       /* addButton.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View arg0) {
 				// Switch to addEvent screen:
@@ -25,16 +32,15 @@ public class TimeAndPlace extends Activity {
 						addEvent.class);
 				startActivity(addevent);
 			}
-		});
+		}); */
         
-        viewButton.setOnClickListener(new View.OnClickListener() {
+ /*       viewButton.setOnClickListener(new View.OnClickListener() {
         	
         	public void onClick(View arg0) {
         		Intent viewEvent = new Intent(getApplicationContext(),
         				viewEvent.class);
         		startActivity(viewEvent);
         	}
-        });
+        }); */
         
-    }
 }

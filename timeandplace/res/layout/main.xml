@@ -9,6 +9,11 @@
     android:layout_height="wrap_content" 
     android:text="@string/hello"
     />
-<Button android:text="@string/add_button" android:id="@+id/addButton" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+<Button android:text="@string/add_button" 
+		android:id="@+id/addButton" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:onClick="AddEvent">
+		</Button>
 <Button android:text="@string/view_button" android:id="@+id/viewButton" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
 </LinearLayout>

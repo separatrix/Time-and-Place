@@ -1,32 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
-  <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/name"/>
-    <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/editText_name" android:inputType="number">
-        <requestFocus></requestFocus>
+<RelativeLayout 
+  xmlns:android="http://schemas.android.com/apk/res/android" 
+  android:orientation="vertical" 
+  android:layout_width="fill_parent" 
+  android:layout_height="fill_parent"
+> 
+	<TextView
+		android:id="@+id/txt_nafn"
+		android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:text="Nafn Atburðar:"
+    	android:textSize="28px"
+    	android:layout_marginTop="15px"
+    	android:layout_centerHorizontal="true"
+    >
+    </TextView>
+    <EditText 
+    	android:id="@+id/edi_nafn"
+    	android:layout_below="@+id/txt_nafn"
+    	android:layout_centerHorizontal="true"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="15px"
+    >
     </EditText>
-    
-  <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/Starttime"/>
-  <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:inputType="number" android:id="@+id/editText_starttime"></EditText>
-
-  <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/Endtime"/>
-    <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/editText_endtime" android:inputType="number">
-        <requestFocus></requestFocus>
+	<TextView
+		android:id="@+id/txt_timasetning"
+		android:layout_below="@+id/edi_nafn"
+		android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:text="Tímasetning:"
+    	android:textSize="28px"
+    	android:layout_marginTop="15px"
+    	android:layout_centerHorizontal="true"
+    >
+    </TextView>
+    <EditText 
+    	android:id="@+id/edi_timasetning"
+    	android:layout_below="@+id/txt_timasetning"
+    	android:layout_centerHorizontal="true"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="15px"
+    >
     </EditText>
-    
-  <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/location"/>
-    <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/editText_location" android:inputType="number">
-        <requestFocus></requestFocus>
+	<TextView
+		android:id="@+id/txt_stadsetning"
+		android:layout_below="@+id/edi_timasetning"
+		android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:text="Staðsetning:"
+    	android:textSize="28px"
+    	android:layout_marginTop="10px"
+    	android:layout_centerHorizontal="true"
+    >
+    </TextView>
+    <EditText 
+    	android:id="@+id/edi_stadsetning"
+    	android:layout_below="@+id/txt_stadsetning"
+    	android:layout_centerHorizontal="true"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="10px"
+    >
     </EditText>
-    
-  <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/info"/>
-    <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/editText_info" android:inputType="number">
-        <requestFocus></requestFocus>
-    </EditText>
-    <Button android:text="Button" android:id="@+id/addEventButton" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
-    
-    
-</LinearLayout>
+	<TextView
+		android:id="@+id/txt_ferdamati"
+		android:layout_below="@+id/edi_stadsetning"
+		android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:text="Ferðamáti:"
+    	android:textSize="28px"
+    	android:layout_marginTop="10px"
+    	android:layout_centerHorizontal="true"
+    >
+    </TextView>
+	<RadioButton
+		android:id="@+id/rad_gangandi"
+		android:layout_below="@+id/txt_ferdamati"
+		android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:text="Gangandi/Hjólandi"
+    	android:textSize="28px"
+    	android:layout_marginTop="10px"
+    >
+    </RadioButton>
+	<RadioButton
+		android:id="@+id/rad_akandi"
+		android:layout_below="@+id/rad_gangandi"
+		android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:text="Akandi"
+    	android:textSize="28px"
+    	android:layout_marginTop="10px"
+    >
+    </RadioButton>
+    <Button
+		android:id="@+id/btn_skra"
+		android:layout_below="@+id/rad_akandi"
+		android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:text="Skrá atburð"
+    	android:textSize="28px"
+    	android:layout_marginTop="10px"
+    	android:layout_centerHorizontal="true"
+    	android:onClick="BaetaVid"
+    >
+    </Button>
+</RelativeLayout>
