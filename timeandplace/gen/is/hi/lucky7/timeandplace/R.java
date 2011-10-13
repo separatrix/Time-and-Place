@@ -21,14 +21,14 @@ public final class R {
         public static final int edi_stadsetning=0x7f050005;
         public static final int edi_timasetning=0x7f050003;
         public static final int edit_viewNum=0x7f05000e;
-        public static final int label=0x7f05000b;
         public static final int rad_akandi=0x7f050008;
         public static final int rad_gangandi=0x7f050007;
-        public static final int textView1=0x7f050010;
+        public static final int text_row=0x7f05000b;
         public static final int txt_ferdamati=0x7f050006;
         public static final int txt_nafn=0x7f050000;
         public static final int txt_stadsetning=0x7f050004;
         public static final int txt_timasetning=0x7f050002;
+        public static final int view=0x7f050010;
         public static final int viewButton=0x7f05000d;
         public static final int viewEventButton=0x7f05000f;
     }
@@ -47,6 +47,8 @@ public final class R {
         public static final int info=0x7f040008;
         public static final int location=0x7f040007;
         public static final int name=0x7f040004;
+        public static final int no_events=0x7f040009;
+        public static final int num_events=0x7f04000a;
         public static final int view_button=0x7f040003;
     }
 }

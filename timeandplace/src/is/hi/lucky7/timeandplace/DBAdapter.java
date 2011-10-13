@@ -17,7 +17,7 @@ public class DBAdapter {
 	public static final String colName="name";
 	public static final String colStartTime ="start_time";
 	public static final String colEndTime="end_time";
-	public static final String colLocation="loaction";
+	public static final String colLocation="location";
 	public static final String colInfo="info";
 	
 	private Context context;
@@ -63,6 +63,11 @@ public class DBAdapter {
 		 return cur;
 	 }
 	 
-	 
-
+	 public int getEventCount() 
+	 {
+			Cursor cur= db.rawQuery("Select * from "+eventTable, null);
+			int x= cur.getCount();
+			cur.close();
+			return x;
+	 }
 }

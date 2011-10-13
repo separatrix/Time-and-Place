@@ -9,5 +9,7 @@
     <string name="Endtime">End time:</string>
     <string name="location">Location:</string>
     <string name="info">Info:</string>
+    <string name="no_events">No Registered Events</string>
+    <string name="num_events">Number of Events: </string>
     
 </resources>

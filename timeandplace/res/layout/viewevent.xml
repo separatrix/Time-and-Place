@@ -8,6 +8,14 @@
         <requestFocus></requestFocus>
     </EditText>
     <Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:text="Button" android:id="@+id/viewEventButton"></Button>
-    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="TextView" android:id="@+id/textView1"></TextView>
+    <TextView android:id="@+id/view" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/num_events"></TextView>
+    
+    	<ListView android:id="@id/android:list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+  	<TextView android:id="@id/android:empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_events"/>
     
 </LinearLayout>
