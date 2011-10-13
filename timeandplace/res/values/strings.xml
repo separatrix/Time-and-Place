@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, TimeAndPlace!</string>
+    <string name="app_name">TimeAndPlace</string>
+    <string name="add_button">Add an Event</string>
+    <string name="view_button">View events</string>
+    <string name="name">Name:</string>
+    <string name="Starttime">Start time:</string>
+    <string name="Endtime">End time:</string>
+    <string name="location">Location:</string>
+    <string name="info">Info:</string>
+    
+</resources>

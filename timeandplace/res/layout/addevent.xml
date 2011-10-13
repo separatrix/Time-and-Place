@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/name"/>
+    <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/editText_name" android:inputType="number">
+        <requestFocus></requestFocus>
+    </EditText>
+    
+  <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/Starttime"/>
+  <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:inputType="number" android:id="@+id/editText_starttime"></EditText>
+
+  <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/Endtime"/>
+    <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/editText_endtime" android:inputType="number">
+        <requestFocus></requestFocus>
+    </EditText>
+    
+  <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/location"/>
+    <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/editText_location" android:inputType="number">
+        <requestFocus></requestFocus>
+    </EditText>
+    
+  <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/info"/>
+    <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/editText_info" android:inputType="number">
+        <requestFocus></requestFocus>
+    </EditText>
+    <Button android:text="Button" android:id="@+id/addEventButton" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+    
+    
+</LinearLayout>
