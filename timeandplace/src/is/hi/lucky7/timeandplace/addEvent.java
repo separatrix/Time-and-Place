@@ -41,6 +41,13 @@ public class addEvent extends Activity{
     		String loc = edit_location.getText().toString();
     		//String info = edit_info.getText().toString();
     		String info = "NULL";
+    		
+    		// Herna vantar villutjekk. Forritid crashar ef null gildi eru skrad inn i event
+    		// thar sem dalkar in gagnagrunn eru restricted vid NOT NULL gildi.
+    		// Tharf ad passa ad name, start_time, end_time og transport seu ekki null.
+    		// Spurning um ad passa lika upp a location upp a seinni tima.
+    		
+    		// Ath einnig nyjan Event smid sem tekur lika vid transport
     		Event e = new Event(name, start, end, loc, info);
     		dbAdapter.AddEvent(e);
     }

@@ -8,7 +8,7 @@ import android.util.Log;
 public class DBHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "Events";
 
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 
 	// Database creation sql statement
 	// id | name | start_time | end_time | location | info
@@ -19,6 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ "start_time INTEGER NOT NULL,"
 			+ "end_time INTEGER NOT NULL,"
 			+ "location TEXT,"
+			+ "transport INTEGER NOT NULL,"
 			+ "info TEXT);";
 
 	public DBHelper(Context context) {

@@ -14,6 +14,8 @@ public class TimeAndPlace extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        // Takkaskilgreiningar og slikt thurfa kannski ekki ad vera i koda.
+        // Virdist ekki breyta neinu tho thessar linur seu teknar ut
         final Button addButton = (Button) findViewById(R.id.addButton);
         final Button viewButton = (Button) findViewById(R.id.viewButton);
         }

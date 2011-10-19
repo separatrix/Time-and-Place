@@ -7,15 +7,27 @@ public class Event {
 	int _startTime;
 	int _endTime;
 	String _location;
+	int _transport;
 	String _info;
+	
+	public Event(String name, int startTime, int endTime, String location, int transport, String info){
+		this._name = name;
+		this._startTime = startTime;
+		this._endTime = endTime;
+		this._location = location;
+		this._transport = transport;
+		this._info = info;
+	}
 	
 	public Event(String name, int startTime, int endTime, String location, String info){
 		this._name = name;
 		this._startTime = startTime;
 		this._endTime = endTime;
 		this._location = location;
+		this._transport = 0;
 		this._info = info;
 	}
+	
 		public int getId() {
 			return this._id;
 		}
@@ -52,7 +64,7 @@ public class Event {
 			return this._location;
 		}
 		
-		public void getLocation(String location) {
+		public void setLocation(String location) {
 			this._location = location;
 		}
 		
@@ -63,4 +75,12 @@ public class Event {
 		public void setInfo(String info) {
 			this._info = info;
 		}
+		
+		public int getTransport() {
+			return this._transport;
+		}
+		
+		public void setTransport(int transport) {
+			this._transport = transport;
+		}		
 }
