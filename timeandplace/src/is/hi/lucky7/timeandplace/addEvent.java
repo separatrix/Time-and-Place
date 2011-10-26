@@ -3,7 +3,6 @@ package is.hi.lucky7.timeandplace;
 import java.util.Calendar;
 
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -13,7 +12,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.View;
 import is.hi.lucky7.timeandplace.Event;
 import is.hi.lucky7.timeandplace.DBAdapter;
@@ -56,6 +54,7 @@ public class addEvent extends Activity{
             	.setTitle("Ferðamáti")
             	.setItems(num, new DialogInterface.OnClickListener() {
             		public void onClick(DialogInterface dialog, int which) {
+            			//0 = gangandi, 1 = hjólandi, 2 = keyrandi
             			ferdamati = which;
             			}
             })
@@ -105,38 +104,41 @@ public class addEvent extends Activity{
         dagur = c.get(Calendar.DAY_OF_MONTH);
         klst = c.get(Calendar.HOUR_OF_DAY);
         min = c.get(Calendar.MINUTE);
-		//final EditText edit_nafn = (EditText) findViewById(R.id.edi_nafn);
-		//final EditText edit_startTime = (EditText) findViewById(R.id.edi_lysing);
-		//final EditText edit_endTime = (EditText) findViewById(R.id.editText_endtime);
-		//final EditText edit_location = (EditText) findViewById(R.id.edi_stadsetning);
-		//final EditText edit_info = (EditText) findViewById(R.id.editText_info);
-
-        //final Button addEventButton = (Button) findViewById(R.id.btn_skra);
 
 	}
-        //public void BaetaVid(View view) {
-    		//final EditText edit_nafn = (EditText) findViewById(R.id.edi_nafn);
-    		//final EditText edit_startTime = (EditText) findViewById(R.id.edi_timasetning);
-    		//final EditText edit_endTime = (EditText) findViewById(R.id.editText_endtime);
-    		//final EditText edit_location = (EditText) findViewById(R.id.edi_stadsetning);
-    		//final EditText edit_info = (EditText) findViewById(R.id.editText_info);
-        	//String name = edit_nafn.getText().toString();
-    		//int start = Integer.parseInt(edit_startTime.getText().toString());
-    		//int end = Integer.parseInt(edit_endTime.getText().toString());
-    		//int end = 0;
-    		//String loc = edit_location.getText().toString();
-    		//String info = edit_info.getText().toString();
-    		//String info = "NULL";
-    		
-    		// Herna vantar villutjekk. Forritid crashar ef null gildi eru skrad inn i event
-    		// thar sem dalkar in gagnagrunn eru restricted vid NOT NULL gildi.
-    		// Tharf ad passa ad name, start_time, end_time og transport seu ekki null.
-    		// Spurning um ad passa lika upp a location upp a seinni tima.
-    		
-    		// Ath einnig nyjan Event smid sem tekur lika vid transport
-    		//Event e = new Event(name, start, end, loc, info);
-    		//dbAdapter.AddEvent(e);
-    //}
+    public void fSkra(View view) {
+    	final EditText edit_nafn = (EditText) findViewById(R.id.edi_nafn);
+    	//final EditText edit_lysing = (EditText) findViewById(R.id.edi_lysing);
+        //String nafn = edit_nafn.getText().toString();
+    	//String lysing = edit_lysing.getText().toString();
+    	int fyrritimi = toTimestamp(ar,man,dagur,f_klst,f_min);
+    	int seinnitimi = toTimestamp(ar,man,dagur,s_klst,s_min);
+    	String stadsetning = "NULL";
+    	// Herna vantar villutjekk. Forritid crashar ef null gildi eru skrad inn i event
+    	// thar sem dalkar in gagnagrunn eru restricted vid NOT NULL gildi.
+    	// Tharf ad passa ad name, start_time, end_time og transport seu ekki null.
+    	// Spurning um ad passa lika upp a location upp a seinni tima.	
+    	//Event e = new Event(nafn,fyrritimi,seinnitimi,stadsetning,ferdamati,lysing);
+    	//dbAdapter.AddEvent(e); 
+    	}
+    public void fDag(View view) {
+    	showDialog(0);
+    	    }
+    public void fUpphaf(View view) {
+    	showDialog(1);
+    	    }
+    public void fLoka(View view) {
+    	showDialog(2);
+    	    }
+    public void fFerda(View view) {
+    	showDialog(3);
+    	    }
+    public int toTimestamp(int ar, int man, int dagur, int klst, int min) {
+    	//Hér þarf að breyta í timestamp.
+    	final Calendar c = Calendar.getInstance();
+    	c.set(ar,man,dagur,klst,min);
+    	return 0;
+    }
 }
 
 
