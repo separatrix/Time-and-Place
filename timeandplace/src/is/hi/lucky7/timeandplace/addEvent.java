@@ -108,9 +108,9 @@ public class addEvent extends Activity{
 	}
     public void fSkra(View view) {
     	final EditText edit_nafn = (EditText) findViewById(R.id.edi_nafn);
-    	//final EditText edit_lysing = (EditText) findViewById(R.id.edi_lysing);
-        //String nafn = edit_nafn.getText().toString();
-    	//String lysing = edit_lysing.getText().toString();
+    	final EditText edit_lysing = (EditText) findViewById(R.id.edi_lysing);
+        String nafn = edit_nafn.getText().toString();
+    	String lysing = edit_lysing.getText().toString();
     	int fyrritimi = toTimestamp(ar,man,dagur,f_klst,f_min);
     	int seinnitimi = toTimestamp(ar,man,dagur,s_klst,s_min);
     	String stadsetning = "NULL";
@@ -118,8 +118,8 @@ public class addEvent extends Activity{
     	// thar sem dalkar in gagnagrunn eru restricted vid NOT NULL gildi.
     	// Tharf ad passa ad name, start_time, end_time og transport seu ekki null.
     	// Spurning um ad passa lika upp a location upp a seinni tima.	
-    	//Event e = new Event(nafn,fyrritimi,seinnitimi,stadsetning,ferdamati,lysing);
-    	//dbAdapter.AddEvent(e); 
+    	Event e = new Event(nafn,fyrritimi,seinnitimi,stadsetning,ferdamati,lysing);
+    	dbAdapter.AddEvent(e); 
     	}
     public void fDag(View view) {
     	showDialog(0);
