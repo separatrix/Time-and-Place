@@ -107,6 +107,7 @@ public class addEvent extends Activity{
 
 	}
     public void fSkra(View view) {
+    	//Hér þarf líka að bakka á upphafsskjá.
     	final EditText edit_nafn = (EditText) findViewById(R.id.edi_nafn);
     	final EditText edit_lysing = (EditText) findViewById(R.id.edi_lysing);
         String nafn = edit_nafn.getText().toString();

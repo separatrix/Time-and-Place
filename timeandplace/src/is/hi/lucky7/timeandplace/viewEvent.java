@@ -19,14 +19,6 @@ public class viewEvent extends ListActivity{
 		dba = new DBAdapter(this);
 		dba.open();
 		fillData();
-		
-		final TextView view = (TextView) findViewById(R.id.view);
-
-		view.append(Integer.toString(dba.getEventCount()));
-		
-		final EditText edit_ViewNum = (EditText) findViewById(R.id.edit_viewNum);
-		final Button viewEventButton = (Button) findViewById(R.id.viewEventButton);
-
 	}
 		private void fillData() {
 	        // Get all of the notes from the database and create the item list

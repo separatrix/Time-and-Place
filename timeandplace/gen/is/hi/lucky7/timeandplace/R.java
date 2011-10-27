@@ -24,13 +24,10 @@ public final class R {
         public static final int btn_upphafstimi=0x7f050005;
         public static final int edi_lysing=0x7f050003;
         public static final int edi_nafn=0x7f050001;
-        public static final int edit_viewNum=0x7f05000e;
         public static final int text_row=0x7f05000b;
         public static final int txt_lysing=0x7f050002;
         public static final int txt_nafn=0x7f050000;
-        public static final int view=0x7f050010;
         public static final int viewButton=0x7f05000d;
-        public static final int viewEventButton=0x7f05000f;
     }
     public static final class layout {
         public static final int addevent=0x7f030000;
