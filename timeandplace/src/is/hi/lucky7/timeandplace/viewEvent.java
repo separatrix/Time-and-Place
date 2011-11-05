@@ -2,20 +2,19 @@ package is.hi.lucky7.timeandplace;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.view.View;
+import android.content.Intent;
 import android.database.Cursor;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 public class viewEvent extends ListActivity{
 		private DBAdapter dba;
-		private Cursor cur;
 		
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.viewevent);
+		//setContentView(R.layout.viewevent);
 		dba = new DBAdapter(this);
 		dba.open();
 		fillData();
@@ -33,6 +32,17 @@ public class viewEvent extends ListActivity{
 	            new SimpleCursorAdapter(this, R.layout.event_row, c, from, to);
 	        setListAdapter(ev);
 		}
+	    protected void onListItemClick(ListView l, View v, int position, long id) {
+	    	super.onListItemClick(l, v, position, id);
+	    	//Ná í það sem ýtt var á.
+	    	Object o = this.getListAdapter().getItemId(position);
+	    	String keyword = o.toString();
+	    	//Toast.makeText(this, "Þú valdir: " + keyword, Toast.LENGTH_LONG).show();
+			Intent viewOneEvent = new Intent(getApplicationContext(), 
+					viewOneEvent.class);
+					viewOneEvent.putExtra("id",keyword);
+			startActivity(viewOneEvent);
+	    }
 	
 }
  
