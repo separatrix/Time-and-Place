@@ -22,8 +22,6 @@ public final class R {
         public static final int btn_senda=0x7f050009;
         public static final int btn_stadsetning=0x7f050007;
         public static final int btn_upphafstimi=0x7f050005;
-        public static final int button1=0x7f05000e;
-        public static final int edi=0x7f05000f;
         public static final int edi_lysing=0x7f050003;
         public static final int edi_nafn=0x7f050001;
         public static final int text_row=0x7f05000b;
