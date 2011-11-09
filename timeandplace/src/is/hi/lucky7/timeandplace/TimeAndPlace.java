@@ -1,28 +1,38 @@
 package is.hi.lucky7.timeandplace;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.view.View;
+import android.content.Context;
 import android.content.Intent;
-
+import android.app.AlarmManager;
 
 public class TimeAndPlace extends Activity {
     /** Called when the activity is first created. */
-    @Override
+    //@Override
+    	private notificationHandler not = new notificationHandler(this);
+    	private AlarmManager alarm; // Notad i kodabut sem er kommentadur ut her ad nedan
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        
+        // Thessi kodabutur keyrir forritid a 20 sekundna fresti
+        /*
+    	Intent tap_intent = new Intent(this, TimeAndPlace.class);
+        PendingIntent runprogram = PendingIntent.getActivity(this, 0, tap_intent, 0);
+        alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+10*1000, 20*1000, runprogram);
+        */
+        
         setContentView(R.layout.main);
         
-        // Takkaskilgreiningar og slikt thurfa kannski ekki ad vera i koda.
-        // Virdist ekki breyta neinu tho thessar linur seu teknar ut
-        final Button addButton = (Button) findViewById(R.id.addButton);
-        final Button viewButton = (Button) findViewById(R.id.viewButton);
         }
     
     public void AddEvent(View view) {
 		// Switch to addEvent screen:
-		Intent addevent = new Intent(getApplicationContext(), 
+		Intent addevent = new Intent(getApplicationContext(),
 				addEvent.class);
 		startActivity(addevent);
     }
@@ -32,5 +42,20 @@ public class TimeAndPlace extends Activity {
     	Intent viewevent = new Intent(getApplicationContext(),
     			viewEvent.class);
     	startActivity(viewevent);
-    }        
+    }
+    
+    public void testAlarm(View view) {
+    	final int id = 1;
+    	final long when = System.currentTimeMillis();
+    	not.postNotification(id,"titill", "strengur",when);
+    }
+    
+    public void cancelAlarmTest(View view) {
+    	// Crashar ef aldrei hefur verid til notification med 
+    	// thessu id.
+    	// Thurfum ad passa ad thad gerist ekki i loka utgafu
+    	// forritsins eda halda utan um thau notifications sem 
+    	// er buid ad setja.
+    	not.cancelNotification(1);
+    }
 }

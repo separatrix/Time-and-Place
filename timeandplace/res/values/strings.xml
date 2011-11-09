@@ -11,5 +11,7 @@
     <string name="info">Info:</string>
     <string name="no_events">No Registered Events</string>
     <string name="num_events">Number of Events: </string>
+    <string name="alarm_test_button">Alarm Test!</string>
+    <string name="cancel_alarm_test_button">Alarm cancel test!</string>
     
 </resources>

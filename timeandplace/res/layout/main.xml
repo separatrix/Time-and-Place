@@ -21,4 +21,16 @@
 		android:layout_height="wrap_content"
 		android:onClick="ViewEvent">
 		</Button>
+<Button android:text="@string/alarm_test_button" 
+		android:id="@+id/alarm_test" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:onClick="testAlarm">
+		</Button>
+<Button android:text="@string/cancel_alarm_test_button" 
+		android:id="@+id/alarm_cancel_test" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:onClick="cancelAlarmTest">
+		</Button>		
 </LinearLayout>
