@@ -70,8 +70,8 @@ public class DBAdapter {
 		 Cursor c = db.rawQuery("SELECT * FROM " +eventTable+ " WHERE " +colId+ "= " +Integer.toString(id), null);
 		 c.moveToFirst();
 		 String name = c.getString(0);
-		 int start = c.getInt(1);
-		 int end = c.getInt(2);
+		 long start = c.getLong(1);
+		 long end = c.getLong(2);
 		 String loc = c.getString(3);
 		 int trans = c.getInt(4);
 		 String info = c.getString(5);

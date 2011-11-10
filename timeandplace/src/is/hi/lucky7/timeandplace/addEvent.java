@@ -1,11 +1,13 @@
 package is.hi.lucky7.timeandplace;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
 
 import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -112,8 +114,8 @@ public class addEvent extends Activity{
     	final EditText edit_lysing = (EditText) findViewById(R.id.edi_lysing);
         String nafn = edit_nafn.getText().toString();
     	String lysing = edit_lysing.getText().toString();
-    	int fyrritimi = toTimestamp(ar,man,dagur,f_klst,f_min);
-    	int seinnitimi = toTimestamp(ar,man,dagur,s_klst,s_min);
+    	long fyrritimi = toTimestamp(ar,man,dagur,f_klst,f_min);
+    	long seinnitimi = toTimestamp(ar,man,dagur,s_klst,s_min);
     	String stadsetning = "NULL";
     	// Herna vantar villutjekk. Forritid crashar ef null gildi eru skrad inn i event
     	// thar sem dalkar in gagnagrunn eru restricted vid NOT NULL gildi.
@@ -134,11 +136,10 @@ public class addEvent extends Activity{
     public void fFerda(View view) {
     	showDialog(3);
     	    }
-    public int toTimestamp(int ar, int man, int dagur, int klst, int min) {
-    	//Hér þarf að breyta í timestamp.
-    	final Calendar c = Calendar.getInstance();
+    public long toTimestamp(int ar, int man, int dagur, int klst, int min) {
+    	Calendar c = Calendar.getInstance();
     	c.set(ar,man,dagur,klst,min);
-    	return 0;
+    	return c.getTimeInMillis();
     }
 }
 

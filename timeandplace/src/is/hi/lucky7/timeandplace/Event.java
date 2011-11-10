@@ -4,13 +4,13 @@ public class Event {
 
 	int _id;
 	String _name;
-	int _startTime;
-	int _endTime;
+	long _startTime;
+	long _endTime;
 	String _location;
 	int _transport;
 	String _info;
 	
-	public Event(String name, int startTime, int endTime, String location, int transport, String info){
+	public Event(String name, long startTime, long endTime, String location, int transport, String info){
 		this._name = name;
 		this._startTime = startTime;
 		this._endTime = endTime;
@@ -19,7 +19,7 @@ public class Event {
 		this._info = info;
 	}
 	
-	public Event(String name, int startTime, int endTime, String location, String info){
+	public Event(String name, long startTime, long endTime, String location, String info){
 		this._name = name;
 		this._startTime = startTime;
 		this._endTime = endTime;
@@ -44,19 +44,19 @@ public class Event {
 			this._name = name;
 		}
 		
-		public int getStartTime() {
+		public long getStartTime() {
 			return this._startTime;
 		}
 		
-		public void setStartTime(int startTime){
+		public void setStartTime(long startTime){
 			this._startTime = startTime;
 		}
 		
-		public int getEndTime() {
+		public long getEndTime() {
 			return this._endTime;
 		}
 		
-		public void setEndTime(int endTime) {
+		public void setEndTime(long endTime) {
 			this._endTime = endTime;
 		}
 		
