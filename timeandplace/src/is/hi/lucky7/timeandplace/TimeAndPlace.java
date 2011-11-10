@@ -44,6 +44,14 @@ public class TimeAndPlace extends Activity {
     	startActivity(viewevent);
     }
     
+    // Til ad testa Event og DB virkni
+    public void ViewEventTest(View view) {
+    	// Switch to viewEvent screen:
+    	Intent vieweventtest = new Intent(getApplicationContext(),
+    			event_test.class);
+    	startActivity(vieweventtest);
+    }
+    
     public void testAlarm(View view) {
     	final int id = 1;
     	final long when = System.currentTimeMillis();

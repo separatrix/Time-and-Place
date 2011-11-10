@@ -15,9 +15,14 @@ public final class R {
     }
     public static final class id {
         public static final int TextView01=0x7f05000a;
-        public static final int addButton=0x7f05000c;
-        public static final int alarm_cancel_test=0x7f05000f;
-        public static final int alarm_test=0x7f05000e;
+        public static final int TextView02=0x7f05000c;
+        public static final int TextView03=0x7f05000d;
+        public static final int TextView04=0x7f05000e;
+        public static final int TextView05=0x7f05000f;
+        public static final int TextView06=0x7f050010;
+        public static final int addButton=0x7f050011;
+        public static final int alarm_cancel_test=0x7f050014;
+        public static final int alarm_test=0x7f050013;
         public static final int btn_dagsetning=0x7f050004;
         public static final int btn_ferdamati=0x7f050008;
         public static final int btn_lokatimi=0x7f050006;
@@ -26,17 +31,19 @@ public final class R {
         public static final int btn_upphafstimi=0x7f050005;
         public static final int edi_lysing=0x7f050003;
         public static final int edi_nafn=0x7f050001;
+        public static final int event_test_button=0x7f050015;
         public static final int text_row=0x7f05000b;
         public static final int txt_lysing=0x7f050002;
         public static final int txt_nafn=0x7f050000;
-        public static final int viewButton=0x7f05000d;
+        public static final int viewButton=0x7f050012;
     }
     public static final class layout {
         public static final int addevent=0x7f030000;
         public static final int event_row=0x7f030001;
-        public static final int main=0x7f030002;
-        public static final int viewevent=0x7f030003;
-        public static final int viewoneevent=0x7f030004;
+        public static final int event_test=0x7f030002;
+        public static final int main=0x7f030003;
+        public static final int viewevent=0x7f030004;
+        public static final int viewoneevent=0x7f030005;
     }
     public static final class string {
         public static final int Endtime=0x7f040006;
@@ -45,6 +52,7 @@ public final class R {
         public static final int alarm_test_button=0x7f04000b;
         public static final int app_name=0x7f040001;
         public static final int cancel_alarm_test_button=0x7f04000c;
+        public static final int event_test_button=0x7f04000d;
         public static final int hello=0x7f040000;
         public static final int info=0x7f040008;
         public static final int location=0x7f040007;

@@ -67,7 +67,7 @@ public class DBAdapter {
 	 
 	 Event getEvent(int id)
 	 {
-		 Cursor c = db.rawQuery("SELECT * FROM " +eventTable+ " WHERE " +colId+ "= " +Integer.toString(id), null);
+		 Cursor c = db.rawQuery("SELECT * FROM "+eventTable+" WHERE "+colId+"= " +Integer.toString(id), null);
 		 c.moveToFirst();
 		 String name = c.getString(0);
 		 long start = c.getLong(1);

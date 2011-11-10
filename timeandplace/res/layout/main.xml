@@ -32,5 +32,11 @@
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
 		android:onClick="cancelAlarmTest">
+		</Button>
+<Button android:text="@string/event_test_button" 
+		android:id="@+id/event_test_button" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:onClick="ViewEventTest">
 		</Button>		
 </LinearLayout>

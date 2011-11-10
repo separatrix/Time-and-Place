@@ -16,5 +16,6 @@
 		<activity android:name=".addEvent"></activity>
 		<activity android:name=".viewEvent"></activity>
 		<activity android:name="viewOneEvent"></activity>
+		<activity android:name="event_test"></activity>
     </application>
 </manifest>

@@ -13,5 +13,6 @@
     <string name="num_events">Number of Events: </string>
     <string name="alarm_test_button">Alarm Test!</string>
     <string name="cancel_alarm_test_button">Alarm cancel test!</string>
+    <string name="event_test_button">Event og db test</string>
     
 </resources>
