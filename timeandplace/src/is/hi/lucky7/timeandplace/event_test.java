@@ -3,9 +3,6 @@ package is.hi.lucky7.timeandplace;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 public class event_test extends Activity{
 	private DBAdapter DBA;
@@ -26,7 +23,7 @@ public class event_test extends Activity{
 		
 		// Skrifa i textviews ...
 		
-		e = DBA.getEvent(20);
+		e = DBA.getEvent(1);
 		
 		tw1.append(e.getName());
 		tw2.append(Long.toString(e.getStartTime()));

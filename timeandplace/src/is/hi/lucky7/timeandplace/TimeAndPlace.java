@@ -66,4 +66,10 @@ public class TimeAndPlace extends Activity {
     	// er buid ad setja.
     	not.cancelNotification(1);
     }
+    
+    public void testAlarm() {
+    	final int id = 2;
+    	final long when = System.currentTimeMillis();
+    	not.postNotification(id,"CheckerTest", "Success!",when);
+    }
 }
