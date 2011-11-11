@@ -10,7 +10,18 @@ public class Event {
 	int _transport;
 	String _info;
 	
+	// Smidur fyrir nyskraningu atburda
 	public Event(String name, long startTime, long endTime, String location, int transport, String info){
+		this._name = name;
+		this._startTime = startTime;
+		this._endTime = endTime;
+		this._location = location;
+		this._transport = transport;
+		this._info = info;
+	}
+	// Smidur fyrir lestur ur gagnagrunni og editing
+	public Event(int id, String name, long startTime, long endTime, String location, int transport, String info){
+		this._id = id;
 		this._name = name;
 		this._startTime = startTime;
 		this._endTime = endTime;
@@ -27,7 +38,8 @@ public class Event {
 		this._transport = 0;
 		this._info = info;
 	}
-	
+		
+		// Notist adeins a Event hluti sem innihalda id
 		public int getId() {
 			return this._id;
 		}
