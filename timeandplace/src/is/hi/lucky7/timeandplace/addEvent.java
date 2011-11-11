@@ -6,6 +6,7 @@ import java.util.Calendar;
 import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.app.Activity;
@@ -33,8 +34,11 @@ public class addEvent extends Activity{
     private int s_klst;
     private int s_min;
     private int ferdamati;
+	private Double hnitLat;
+	private Double hnitLon;
     
     protected Dialog onCreateDialog(int id) {
+    	// TODO: Færa strengi í strings.xml
         switch (id) {
         //Dagsetningar dialog
         case 0:
@@ -61,6 +65,35 @@ public class addEvent extends Activity{
             			}
             })
             .create();
+    	case 4:
+    		LinearLayout linLay = new LinearLayout(this);
+    		final EditText lat = new EditText(this);
+    		lat.setHint("Latitude");
+    		final EditText lon = new EditText(this);
+    		lon.setHint("Longitude");
+    		linLay.addView(lat);
+    		linLay.addView(lon);
+    		return new AlertDialog.Builder(this)
+    			.setTitle("Staðsetning")
+    			.setMessage("Veldu hnit")
+    			.setView(linLay)
+    			.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+    				public void onClick(DialogInterface dialog, int whichButton) {
+    					try {
+    						hnitLat = Double.parseDouble(lat.getText().toString());
+    						hnitLon = Double.parseDouble(lon.getText().toString());
+    					} catch (NumberFormatException e) {
+    						hnitLat = null;
+    						hnitLon = null;
+    						// Villuboð
+    						hnitVilla();
+    					}
+    				}
+    			}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {					
+					public void onClick(DialogInterface dialog, int whichButton) {
+						// Do Nothing						
+					}
+				}).show();
         }
         return null;
     }
@@ -136,10 +169,24 @@ public class addEvent extends Activity{
     public void fFerda(View view) {
     	showDialog(3);
     	    }
+    public void fStads(View view) {
+    	showDialog(4);
+    		}
     public long toTimestamp(int ar, int man, int dagur, int klst, int min) {
     	Calendar c = Calendar.getInstance();
     	c.set(ar,man,dagur,klst,min);
     	return c.getTimeInMillis();
+    }
+    
+    public void hnitVilla () {
+    	new AlertDialog.Builder(this)
+			.setTitle("Villa")
+			.setMessage("Hnit verða að vera tölur.")
+			.setPositiveButton("Ok", new DialogInterface.OnClickListener() {					
+				public void onClick(DialogInterface dialog, int which) {
+					// Nothing						
+				}
+			}).show();
     }
 }
 
