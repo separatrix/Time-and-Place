@@ -32,7 +32,9 @@ public class viewOneEvent extends ListActivity {
     private int s_klst;
     private int s_min;
     private int ferdamati;
-    private DBAdapter dbadapter;
+    public DBAdapter dbadapter;
+    public Event ev;
+    
     
     protected Dialog onCreateDialog(int id) {
         switch (id) {
@@ -48,7 +50,7 @@ public class viewOneEvent extends ListActivity {
         //Seinna tíma dialog
     	case 4: 
     		return new TimePickerDialog(this,
-                mTimeSetListener2, f_klst, f_min, false);
+                mTimeSetListener2, s_klst, s_min, false);
     	//Ferðamáta dialog
     	case 6:
     		String num[] = {"Gangandi","Hjólandi","Keyrandi"}; 
@@ -58,6 +60,7 @@ public class viewOneEvent extends ListActivity {
             		public void onClick(DialogInterface dialog, int which) {
             			//0 = gangandi, 1 = hjólandi, 2 = keyrandi
             			ferdamati = which;
+            			uppfaeraFerdamata(ferdamati); 
             			}
             })
             .create();
@@ -80,7 +83,6 @@ public class viewOneEvent extends ListActivity {
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 	f_klst = hourOfDay;
                 	f_min = minute;
-                	//showDialog(2);
                 }
             };
     //Seinna skiptið sem tíminn birtist
@@ -91,25 +93,33 @@ public class viewOneEvent extends ListActivity {
                     s_min = minute;
                         }
                     }; 
+    
 	/** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	 // Núverandi dagsetning
+	    dbadapter = new DBAdapter(this);
+		dbadapter.open();
+	    String ferdamatiarray[] = {"Gangandi","Hjólandi","Keyrandi"};
+	    //Nær í id frá viewEvent
+	    Bundle extras = getIntent().getExtras();
+	    String value = extras.getString("id");
+		ev = dbadapter.getEvent(Integer.parseInt(value));
+	 // Upphafs dagsetning
         final Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(ev.getStartTime());
         ar = c.get(Calendar.YEAR);
         man = c.get(Calendar.MONTH);
         dagur = c.get(Calendar.DAY_OF_MONTH);
         klst = c.get(Calendar.HOUR_OF_DAY);
         min = c.get(Calendar.MINUTE); 
+        // Loka dagsetning
+        c.setTimeInMillis(ev.getEndTime());
+        s_klst = c.get(Calendar.HOUR_OF_DAY);
+        s_min = c.get(Calendar.MINUTE); 
         
-	    String[] hlutir = new String[ ] {"Nafn", "Lýsing", "Dagsetning", "Upphafstími", "Lokatími", "Staðsetning", "Ferðamáti", "Eyða"};
+	    String[] hlutir = new String[ ] {ev.getName(), ev.getInfo(), "Dagsetning", "Upphafstími", "Lokatími", "Staðsetning", ferdamatiarray[ev.getTransport()], "Eyða"};
 	    //Arrayadapter birtir nofn í ListView
 	    this.setListAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, hlutir)); 
-	    //Nær í id frá viewEvent
-	    Bundle extras = getIntent().getExtras();
-	    String value = extras.getString("id");
-	    //Thessi virkar ekki, veit ekki af hverju
-		//Event ev = dbadapter.getEvent(1);
 	    
 	}
 	
@@ -121,4 +131,24 @@ public class viewOneEvent extends ListActivity {
     	String numer = o.toString();
     	showDialog(Integer.parseInt(numer));
     } 
+    public void uppfaeraFerdamata(int ferdamati) {
+    	ev.setTransport(ferdamati);
+    	dbadapter.updateEvent(ev); 
+    } 
+    public void uppfaeraFyrritima(long timi) {
+    	ev.setStartTime(timi);
+    	dbadapter.updateEvent(ev);
+    }
+    public void uppfaeraSeinnitima(long timi) {
+    	ev.setEndTime(timi);
+    	dbadapter.updateEvent(ev);
+    }
+    public void uppfaeraLysingu(String lysing) {
+    	ev.setInfo(lysing);
+    	dbadapter.updateEvent(ev);
+    }
+    public void uppfaeraNafn(String nafn) {
+    	ev.setInfo(nafn);
+    	dbadapter.updateEvent(ev);
+    }
 }
