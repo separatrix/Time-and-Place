@@ -35,6 +35,12 @@ public class TAPService extends Service{
 			public void run() {
 				
 				// TODO: Finna leid til ad tjekka a atburdum i gagnagrunni
+				// Einn moguleiki vaeri ad bua lesa efsta atburd i gagnagrunni
+				// Gengur ekki nema ad gomlum atburdum se reglulega hent ut eda
+				// teir faerdir i adra toflu.
+				// Annar moguleiki vaeri ad lesa alla tofluna og reikna hvar mismunur
+				// startTime atburda og nuverandi tima er minnstur. Ef fyrir innan akvedid
+				// gildi tha alarm.
 				// TODO: Finna leid til ad senda gogn hedan yfir i main activity
 		    	not.postNotification(2,"ServiceTest", "Success!",System.currentTimeMillis());
 
@@ -63,6 +69,5 @@ public class TAPService extends Service{
 		TAPService getService() {
 			return TAPService.this;
 		}
-	}
-	
+	}	
 }
