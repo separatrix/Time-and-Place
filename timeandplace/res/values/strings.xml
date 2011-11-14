@@ -14,5 +14,8 @@
     <string name="alarm_test_button">Alarm Test!</string>
     <string name="cancel_alarm_test_button">Alarm cancel test!</string>
     <string name="event_test_button">Event og db test</string>
+    <string name="service_name">TAPService</string>
+    <string name="button_start_service_test">Start service test</string>
+    <string name="button_stop_service_test">Stop service test</string>
     
 </resources>

@@ -3,9 +3,13 @@ package is.hi.lucky7.timeandplace;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
+import android.widget.Toast;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.app.AlarmManager;
 
 public class TimeAndPlace extends Activity {
@@ -13,9 +17,11 @@ public class TimeAndPlace extends Activity {
     //@Override
     	private notificationHandler not = new notificationHandler(this);
     	private AlarmManager alarm; // Notad i kodabut sem er kommentadur ut her ad nedan
+    	private TAPService ts;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //startService(new Intent(this, TAPService.class));
         
         
         // Thessi kodabutur keyrir forritid a 20 sekundna fresti
@@ -27,7 +33,6 @@ public class TimeAndPlace extends Activity {
         */
         
         setContentView(R.layout.main);
-        
         }
     
     public void AddEvent(View view) {
@@ -66,10 +71,12 @@ public class TimeAndPlace extends Activity {
     	// er buid ad setja.
     	not.cancelNotification(1);
     }
+    // Service start/stop test takkar
+    public void startServiceTest(View view) {
+    	startService(new Intent(this, TAPService.class));
+    }
     
-    public void testAlarm() {
-    	final int id = 2;
-    	final long when = System.currentTimeMillis();
-    	not.postNotification(id,"CheckerTest", "Success!",when);
+    public void stopServiceTest(View view) {
+    	stopService(new Intent(this, TAPService.class));
     }
 }

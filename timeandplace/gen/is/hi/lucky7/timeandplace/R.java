@@ -29,6 +29,8 @@ public final class R {
         public static final int btn_senda=0x7f050009;
         public static final int btn_stadsetning=0x7f050007;
         public static final int btn_upphafstimi=0x7f050005;
+        public static final int button_start_service=0x7f050016;
+        public static final int button_stop_service=0x7f050017;
         public static final int edi_lysing=0x7f050003;
         public static final int edi_nafn=0x7f050001;
         public static final int event_test_button=0x7f050015;
@@ -51,6 +53,8 @@ public final class R {
         public static final int add_button=0x7f040002;
         public static final int alarm_test_button=0x7f04000b;
         public static final int app_name=0x7f040001;
+        public static final int button_start_service_test=0x7f04000f;
+        public static final int button_stop_service_test=0x7f040010;
         public static final int cancel_alarm_test_button=0x7f04000c;
         public static final int event_test_button=0x7f04000d;
         public static final int hello=0x7f040000;
@@ -59,6 +63,7 @@ public final class R {
         public static final int name=0x7f040004;
         public static final int no_events=0x7f040009;
         public static final int num_events=0x7f04000a;
+        public static final int service_name=0x7f04000e;
         public static final int view_button=0x7f040003;
     }
 }

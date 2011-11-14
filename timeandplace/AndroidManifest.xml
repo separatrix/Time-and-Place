@@ -17,5 +17,16 @@
 		<activity android:name=".viewEvent"></activity>
 		<activity android:name="viewOneEvent"></activity>
 		<activity android:name="event_test"></activity>
+		<service
+			android:name=".TAPService"
+			android:process=":tap_process" 
+			android:label="@string/service_name"
+		>
+		</service>
+		<receiver android:name="TAPReceiver">
+			<intent-filter>
+				<action android:name="android.intent.action.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE"></action>
+			</intent-filter>
+		</receiver>
     </application>
 </manifest>

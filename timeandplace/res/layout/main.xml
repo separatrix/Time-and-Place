@@ -38,5 +38,17 @@
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
 		android:onClick="ViewEventTest">
+		</Button>
+<Button android:text="@string/button_start_service_test" 
+		android:id="@+id/button_start_service" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:onClick="startServiceTest">
+		</Button>
+<Button android:text="@string/button_stop_service_test" 
+		android:id="@+id/button_stop_service" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:onClick="stopServiceTest">
 		</Button>		
 </LinearLayout>
