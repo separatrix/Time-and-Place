@@ -21,8 +21,7 @@ public class TimeAndPlace extends Activity {
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //startService(new Intent(this, TAPService.class));
-        
+        startService(new Intent(this, TAPService.class));
         
         // Thessi kodabutur keyrir forritid a 20 sekundna fresti
         /*

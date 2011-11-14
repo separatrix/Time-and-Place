@@ -55,7 +55,7 @@ public class DBAdapter {
 	
 	 Cursor getAllEvents()
 	 {		 
-		 Cursor cur= db.rawQuery("SELECT * FROM "+eventTable,null);
+		 Cursor cur= db.rawQuery("SELECT * FROM "+eventTable+" ORDER BY "+colStartTime+" ASC",null);
 		 return cur;
 	 }
 	 

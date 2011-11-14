@@ -17,13 +17,13 @@ public class TAPService extends Service{
 	private notificationHandler not = new notificationHandler(this);
 	private static String TAG = TAPService.class.getSimpleName();
 	
-	
+		@Override
 	public void onCreate() {
 		super.onCreate();
 		Log.d(TAG, "OnCreate'd");
 		pollForUpdates();
 	}
-	
+		@Override
 	public void onStart(Intent intent, int startId){
 		super.onStart(intent, startId);
 		Log.d(TAG, "OnStart'd");

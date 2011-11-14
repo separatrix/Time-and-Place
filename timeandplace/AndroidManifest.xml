@@ -23,10 +23,5 @@
 			android:label="@string/service_name"
 		>
 		</service>
-		<receiver android:name="TAPReceiver">
-			<intent-filter>
-				<action android:name="android.intent.action.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE"></action>
-			</intent-filter>
-		</receiver>
     </application>
 </manifest>
