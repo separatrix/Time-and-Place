@@ -33,18 +33,13 @@ public class TAPService extends Service{
 		timer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
-				// Toast print test here ...
+				
+				// TODO: Finna leid til ad tjekka a atburdum i gagnagrunni
+				// TODO: Finna leid til ad senda gogn hedan yfir i main activity
 		    	not.postNotification(2,"ServiceTest", "Success!",System.currentTimeMillis());
-		    	toastprint();
 
 				}
 		}, 0, UPDATE_INTERVAL);
-	}
-	
-	public void toastprint()
-	{
-		Toast.makeText(this, "TAPService test!",
-				Toast.LENGTH_LONG).show();
 	}
 
 	@Override
