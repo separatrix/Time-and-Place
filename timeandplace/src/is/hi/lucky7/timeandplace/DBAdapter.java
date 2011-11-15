@@ -93,13 +93,6 @@ public class DBAdapter {
 			return x;
 	 }
 	 
-	 // Spurning: Yfirskrifa alla linuna alltaf eda bara einn field i einu ?
-	 // Ef allt i einu tha, saekja event og edita staka fields ..........
-	 // Vidmots utfaersla ?
-	 
-	 // Ein leid vaeri ad nota getEvent og breyta thvi yfir i Event obj og lesa ur thvi i "Edit fields" i vidmoti
-	 // Sidan gaeti notandi editad thad sem stendur i theim fields og submittad aftur.
-	 // Tha yrdi skrifad aftur i event objectid og thad skrifad i db med sama id og adur. (Gamla entry yfirskrifad).
 	 public void updateEvent(Event e)
 	 {
 		 ContentValues cv = new ContentValues();
@@ -116,4 +109,7 @@ public class DBAdapter {
 	 public void deleteEvent(int id) {
 		 db.delete(eventTable,colId+ " = " +id,null);
 	 }
+	 
+	// TODO: Event check function
+	//			check for events within the next 24 hours or similar ... make length of check scalable!
 }

@@ -14,8 +14,8 @@ public class TAPService extends Service{
 	private final IBinder mBinder = new MyBinder();
 	private notificationHandler not = new notificationHandler(this);
 	private static String TAG = TAPService.class.getSimpleName();
-	private static final long locationUpdateInterval = 60000; // timi milli GPS kalla i ms
-	private static final long notificationCheckInterval = 10000; // timi milli event in range utreikninga
+	private static final long locationUpdateInterval = 60000; // Time between GPS updates (ms)
+	private static final long notificationCheckInterval = 10000; // Time between "event in time-range" checks (ms)
 	private long lastLocationUpdate;
 	private DBAdapter dba;
 	
@@ -39,17 +39,16 @@ public class TAPService extends Service{
 			@Override
 			public void run() {
 				
-				// Check fyrir location update
+				// Location update check
 				if((System.currentTimeMillis()-lastLocationUpdate)>=locationUpdateInterval) {
-					// GPS call and update current location
+					// TODO: GPS check
 					lastLocationUpdate = System.currentTimeMillis();
 					not.postNotification(3,"Location Update",
 							Long.toString(lastLocationUpdate),System.currentTimeMillis());
 				}
-				// TODO: GPS check
+				
 				// TODO: Database access
-				// TODO: Event check function
-				// TODO: Finna leid til ad senda gogn hedan yfir i main activity
+				// TODO: Find a way to send data to main activity for future purposes
 				
 				// Fetch Events within time range
 				// Estimate Travel Time to events within time range with location info

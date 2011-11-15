@@ -12,11 +12,13 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.app.AlarmManager;
 
+// TODO: Cleanup!
+
 public class TimeAndPlace extends Activity {
     /** Called when the activity is first created. */
     //@Override
     	private notificationHandler not = new notificationHandler(this);
-    	//private AlarmManager alarm; // Notad i kodabut sem er kommentadur ut her ad nedan
+    	//private AlarmManager alarm; // Used in the block of code that is commented below
     	//private TAPService ts;
     
     public void onCreate(Bundle savedInstanceState) {

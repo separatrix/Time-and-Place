@@ -10,9 +10,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	private static final int DATABASE_VERSION = 3;
 
-	// Database creation sql statement
+	// Database creation SQL statement
 	// id | name | start_time | end_time | location | info
-
+	// TODO: Add fields for latitude and longitude instead of location field
+	// TODO: Add (boolean?) field for event passed/not passed
+	// TODO: UPDATE DATABASE VERSION
+	// TODO: Fix all functions according to database update
 	private static final String DATABASE_CREATE = ""
 			+ "CREATE TABLE events (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ "name TEXT NOT NULL,"
