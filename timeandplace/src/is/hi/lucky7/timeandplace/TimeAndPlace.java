@@ -78,4 +78,9 @@ public class TimeAndPlace extends Activity {
     public void stopServiceTest(View view) {
     	stopService(new Intent(this, TAPService.class));
     }
+    public void gpsTest(View view) {
+    	Intent gpstest = new Intent(getApplicationContext(),
+    			gpstest.class);
+    	startActivity(gpstest);
+    }
 }
