@@ -25,7 +25,7 @@ public class TimeAndPlace extends Activity {
         super.onCreate(savedInstanceState);
         startService(new Intent(this, TAPService.class));
         
-        // Thessi kodabutur keyrir forritid a 20 sekundna fresti
+        // This piece of test-code runs every 20 seconds
         /*
     	Intent tap_intent = new Intent(this, TimeAndPlace.class);
         PendingIntent runprogram = PendingIntent.getActivity(this, 0, tap_intent, 0);
@@ -65,14 +65,12 @@ public class TimeAndPlace extends Activity {
     }
     
     public void cancelAlarmTest(View view) {
-    	// Crashar ef aldrei hefur verid til notification med 
-    	// thessu id.
-    	// Thurfum ad passa ad thad gerist ekki i loka utgafu
-    	// forritsins eda halda utan um thau notifications sem 
-    	// er buid ad setja.
+    	// Crashes if there isn't and has never been a
+    	// notification with that id number.
+    	// Watch out!
     	not.cancelNotification(1);
     }
-    // Service start/stop test takkar
+    // Service start/stop test buttons
     public void startServiceTest(View view) {
     	startService(new Intent(this, TAPService.class));
     }

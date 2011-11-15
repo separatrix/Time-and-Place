@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 public class DBAdapter {
 	
 	// Database fields
-	// id | name | start_time | end_time | location | info
+	// id | name | start_time | end_time | latitude | longitude | info | passed
 
 	static final String dbName="Events";
 	private static final String eventTable ="events";
@@ -17,9 +17,11 @@ public class DBAdapter {
 	public static final String colName="name";
 	public static final String colStartTime ="start_time";
 	public static final String colEndTime="end_time";
-	public static final String colLocation="location";
+	public static final String colLatitude="latitude";
+	public static final String colLongitude="longitude";
 	public static final String transport ="transport";
 	public static final String colInfo="info";
+	public static final String colPassed="passed";
 	
 	private Context context;
 	private SQLiteDatabase db;
@@ -46,9 +48,11 @@ public class DBAdapter {
 		cv.put(colName, e.getName());
 		cv.put(colStartTime, e.getStartTime());
 		cv.put(colEndTime, e.getEndTime());
-		cv.put(colLocation, e.getLocation());
+		cv.put(colLatitude, e.getLatitude());
+		cv.put(colLongitude, e.getLongitude());
 		cv.put(transport, e.getTransport());
 		cv.put(colInfo, e.getInfo());
+		cv.put(colPassed, e.getPassed());
 		
 		return db.insert(eventTable, colName, cv);
 	}
@@ -69,14 +73,23 @@ public class DBAdapter {
 	 {
 		 Cursor c = db.rawQuery("SELECT * FROM "+eventTable+" WHERE "+colId+"= " +Integer.toString(id), null);
 		 c.moveToFirst();
+		 // indice 0 is event ID
 		 String name = c.getString(1);
 		 long start = c.getLong(2);
 		 long end = c.getLong(3);
-		 String loc = c.getString(4);
-		 int trans = c.getInt(5);
-		 String info = c.getString(6);
+		 double lat = c.getDouble(4);
+		 double lon = c.getDouble(5);
+		 int trans = c.getInt(6);
+		 String info = c.getString(7);
+		 boolean passed = false;
+		 if(c.getInt(8)>0) {
+			 passed = true;
+		 }
+		 else{
+			 passed = false;
+		 }
 		 
-		 Event e = new Event(name, start, end, loc, trans, info);
+		 Event e = new Event(name, start, end, lat, lon, trans, info, passed);
 		 return e;
 	 }
 	 
@@ -99,9 +112,11 @@ public class DBAdapter {
 			cv.put(colName, e.getName());
 			cv.put(colStartTime, e.getStartTime());
 			cv.put(colEndTime, e.getEndTime());
-			cv.put(colLocation, e.getLocation());
+			cv.put(colLatitude, e.getLatitude());
+			cv.put(colLongitude, e.getLongitude());
 			cv.put(transport, e.getTransport());
 			cv.put(colInfo, e.getInfo());
+			cv.put(colPassed, e.getPassed());
 			
 			db.update(eventTable, cv, colId + "=" + e.getId(), null);
 	 }

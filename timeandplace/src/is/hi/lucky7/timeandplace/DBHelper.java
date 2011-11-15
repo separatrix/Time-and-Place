@@ -8,10 +8,10 @@ import android.util.Log;
 public class DBHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "Events";
 
-	private static final int DATABASE_VERSION = 3;
+	private static final int DATABASE_VERSION = 4;
 
 	// Database creation SQL statement
-	// id | name | start_time | end_time | location | info
+	// id | name | start_time | end_time | latitude | longitude | info
 	// TODO: Add fields for latitude and longitude instead of location field
 	// TODO: Add (boolean?) field for event passed/not passed
 	// TODO: UPDATE DATABASE VERSION
@@ -21,9 +21,12 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ "name TEXT NOT NULL,"
 			+ "start_time INTEGER NOT NULL,"
 			+ "end_time INTEGER NOT NULL,"
-			+ "location TEXT,"
+			+ "latitude DOUBLE NOT NULL,"
+			+ "longitude DOUBLE NOT NULL,"
 			+ "transport INTEGER NOT NULL,"
-			+ "info TEXT);";
+			+ "info TEXT,"
+			+ "passed INTEGER NOT NULL"
+			+ ");";
 
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);

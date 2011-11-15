@@ -20,7 +20,9 @@ public class event_test extends Activity{
 		final TextView tw4 = (TextView) findViewById(R.id.TextView04);
 		final TextView tw5 = (TextView) findViewById(R.id.TextView05);
 		final TextView tw6 = (TextView) findViewById(R.id.TextView06);
-		
+		final TextView tw7 = (TextView) findViewById(R.id.TextView07);
+		final TextView tw8 = (TextView) findViewById(R.id.TextView08);
+
 		// Skrifa i textviews ...
 		
 		e = DBA.getEvent(1);
@@ -30,8 +32,9 @@ public class event_test extends Activity{
 		tw3.append(Long.toString(e.getEndTime()));
 		tw4.append(Integer.toString(e.getTransport()));
 		tw5.append(e.getInfo());
-		tw6.append(e.getLocation());
-		
+		tw6.append(Double.toString(e.getLatitude()));
+		tw7.append(Double.toString(e.getLongitude()));
+		tw8.append(Boolean.toString(e.getPassed()));
 		
 	}
 

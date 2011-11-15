@@ -26,10 +26,10 @@ public class addEvent extends Activity{
     private int dagur;
     private int klst;
     private int min;
-    //Tími upphafs atburðar
+    //Timi upphafs atburdar
     private int f_klst;
     private int f_min;
-    //Tími loka atburðar
+    //Timi loka atburdar
     private int s_klst;
     private int s_min;
     private int ferdamati;
@@ -116,12 +116,15 @@ public class addEvent extends Activity{
     	String lysing = edit_lysing.getText().toString();
     	long fyrritimi = toTimestamp(ar,man,dagur,f_klst,f_min);
     	long seinnitimi = toTimestamp(ar,man,dagur,s_klst,s_min);
-    	String stadsetning = "NULL";
+    	double tempLat = 0.0;
+    	double tempLon = 0.0;
+    	boolean tempPass = false;
     	// Herna vantar villutjekk. Forritid crashar ef null gildi eru skrad inn i event
     	// thar sem dalkar in gagnagrunn eru restricted vid NOT NULL gildi.
     	// Tharf ad passa ad name, start_time, end_time og transport seu ekki null.
-    	// Spurning um ad passa lika upp a location upp a seinni tima.	
-    	Event e = new Event(nafn,fyrritimi,seinnitimi,stadsetning,ferdamati,lysing);
+    	// Spurning um ad passa lika upp a location upp a seinni tima
+    	
+    	Event e = new Event(nafn,fyrritimi,seinnitimi,tempLat,tempLon,ferdamati,lysing,tempPass);
     	dbAdapter.AddEvent(e); 
     	}
     public void fDag(View view) {

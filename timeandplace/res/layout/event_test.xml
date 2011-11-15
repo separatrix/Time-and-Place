@@ -9,6 +9,7 @@
     <TextView android:layout_width="201dp" android:id="@+id/TextView03" android:text="End: " android:layout_height="wrap_content" android:layout_weight="0.08"></TextView>
     <TextView android:layout_width="201dp" android:id="@+id/TextView04" android:text="Transport: " android:layout_height="wrap_content" android:layout_weight="0.08"></TextView>
     <TextView android:layout_width="201dp" android:id="@+id/TextView05" android:text="Info: " android:layout_height="wrap_content" android:layout_weight="0.08"></TextView>
-	<TextView android:layout_width="201dp" android:id="@+id/TextView06" android:text="Location: " android:layout_height="wrap_content" android:layout_weight="0.08"></TextView>
-	    
+	<TextView android:layout_width="201dp" android:id="@+id/TextView06" android:text="Latitude: " android:layout_height="wrap_content" android:layout_weight="0.08"></TextView>
+	<TextView android:layout_width="201dp" android:id="@+id/TextView07" android:text="Longitude: " android:layout_height="wrap_content" android:layout_weight="0.08"></TextView>
+	<TextView android:layout_width="201dp" android:id="@+id/TextView08" android:text="Passed: " android:layout_height="wrap_content" android:layout_weight="0.08"></TextView>	    
 </LinearLayout>

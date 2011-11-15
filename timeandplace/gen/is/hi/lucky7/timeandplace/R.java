@@ -20,24 +20,26 @@ public final class R {
         public static final int TextView04=0x7f05000e;
         public static final int TextView05=0x7f05000f;
         public static final int TextView06=0x7f050010;
-        public static final int addButton=0x7f050011;
-        public static final int alarm_cancel_test=0x7f050014;
-        public static final int alarm_test=0x7f050013;
+        public static final int TextView07=0x7f050011;
+        public static final int TextView08=0x7f050012;
+        public static final int addButton=0x7f050013;
+        public static final int alarm_cancel_test=0x7f050016;
+        public static final int alarm_test=0x7f050015;
         public static final int btn_dagsetning=0x7f050004;
         public static final int btn_ferdamati=0x7f050008;
         public static final int btn_lokatimi=0x7f050006;
         public static final int btn_senda=0x7f050009;
         public static final int btn_stadsetning=0x7f050007;
         public static final int btn_upphafstimi=0x7f050005;
-        public static final int button_start_service=0x7f050016;
-        public static final int button_stop_service=0x7f050017;
+        public static final int button_start_service=0x7f050018;
+        public static final int button_stop_service=0x7f050019;
         public static final int edi_lysing=0x7f050003;
         public static final int edi_nafn=0x7f050001;
-        public static final int event_test_button=0x7f050015;
+        public static final int event_test_button=0x7f050017;
         public static final int text_row=0x7f05000b;
         public static final int txt_lysing=0x7f050002;
         public static final int txt_nafn=0x7f050000;
-        public static final int viewButton=0x7f050012;
+        public static final int viewButton=0x7f050014;
     }
     public static final class layout {
         public static final int addevent=0x7f030000;

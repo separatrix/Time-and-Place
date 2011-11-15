@@ -6,30 +6,39 @@ public class Event {
 	String _name;
 	long _startTime;
 	long _endTime;
-	String _location;
+	double _latitude;
+	double _longitude;
 	int _transport;
 	String _info;
+	boolean _passed;
 	
+	// TODO: Change event class to accord for adding latitude, longitude and passed
 	// Smidur fyrir nyskraningu atburda
-	public Event(String name, long startTime, long endTime, String location, int transport, String info){
+	public Event(String name, long startTime, long endTime, double latitude, double longitude, 
+			int transport, String info, boolean passed){
 		this._name = name;
 		this._startTime = startTime;
 		this._endTime = endTime;
-		this._location = location;
+		this._latitude = latitude;
+		this._longitude = longitude;
 		this._transport = transport;
 		this._info = info;
+		this._passed = passed; 
 	}
 	// Smidur fyrir lestur ur gagnagrunni og editing
-	public Event(int id, String name, long startTime, long endTime, String location, int transport, String info){
+	public Event(int id, String name, long startTime, long endTime, double latitude, double longitude, 
+			int transport, String info, boolean passed){
 		this._id = id;
 		this._name = name;
 		this._startTime = startTime;
 		this._endTime = endTime;
-		this._location = location;
+		this._latitude = latitude;
+		this._longitude = longitude;
 		this._transport = transport;
 		this._info = info;
+		this._passed = passed;
 	}
-	
+	/*
 	public Event(String name, long startTime, long endTime, String location, String info){
 		this._name = name;
 		this._startTime = startTime;
@@ -38,7 +47,7 @@ public class Event {
 		this._transport = 0;
 		this._info = info;
 	}
-		
+	*/	
 		// Notist adeins a Event hluti sem innihalda id
 		public int getId() {
 			return this._id;
@@ -72,12 +81,20 @@ public class Event {
 			this._endTime = endTime;
 		}
 		
-		public String getLocation() {
-			return this._location;
+		public double getLatitude() {
+			return this._latitude;
 		}
 		
-		public void setLocation(String location) {
-			this._location = location;
+		public void setLatitude(double latitude) {
+			this._latitude = latitude;
+		}
+		
+		public double getLongitude() {
+			return this._longitude;
+		}
+		
+		public void setLongitude(double longitude) {
+			this._longitude = longitude;
 		}
 		
 		public String getInfo() {
@@ -94,5 +111,13 @@ public class Event {
 		
 		public void setTransport(int transport) {
 			this._transport = transport;
-		}		
+		}
+		
+		public boolean getPassed() {
+			return this._passed;
+		}
+		
+		public void setPassed(boolean passed) {
+			this._passed = passed;
+		}
 }

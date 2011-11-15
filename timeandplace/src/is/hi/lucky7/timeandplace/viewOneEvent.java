@@ -34,7 +34,7 @@ public class viewOneEvent extends ListActivity {
     private int ferdamati;
     public DBAdapter dbadapter;
     public Event ev;
-    
+    // TODO: Make viewing location (latitude,longitude) an option
     
     protected Dialog onCreateDialog(int id) {
         switch (id) {
