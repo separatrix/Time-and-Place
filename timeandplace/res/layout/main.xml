@@ -50,5 +50,11 @@
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
 		android:onClick="stopServiceTest">
-		</Button>		
+		</Button>
+<Button android:text="GPS test" 
+		android:id="@+id/button_gps_test" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:onClick="gpsTest">
+		</Button>
 </LinearLayout>
