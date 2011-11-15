@@ -16,8 +16,8 @@ public class TimeAndPlace extends Activity {
     /** Called when the activity is first created. */
     //@Override
     	private notificationHandler not = new notificationHandler(this);
-    	private AlarmManager alarm; // Notad i kodabut sem er kommentadur ut her ad nedan
-    	private TAPService ts;
+    	//private AlarmManager alarm; // Notad i kodabut sem er kommentadur ut her ad nedan
+    	//private TAPService ts;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

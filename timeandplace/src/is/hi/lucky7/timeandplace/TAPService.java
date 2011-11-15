@@ -8,25 +8,30 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 public class TAPService extends Service{
 	private Timer timer = new Timer();
-	private static final long UPDATE_INTERVAL = 5000;
 	private final IBinder mBinder = new MyBinder();
 	private notificationHandler not = new notificationHandler(this);
 	private static String TAG = TAPService.class.getSimpleName();
+	private static final long locationUpdateInterval = 60000; // timi milli GPS kalla i ms
+	private static final long notificationCheckInterval = 10000; // timi milli event in range utreikninga
+	private long lastLocationUpdate;
+	private DBAdapter dba;
 	
 		@Override
 	public void onCreate() {
 		super.onCreate();
 		Log.d(TAG, "OnCreate'd");
-		pollForUpdates();
+		dba = new DBAdapter(this);
+		dba.open();
 	}
 		@Override
 	public void onStart(Intent intent, int startId){
 		super.onStart(intent, startId);
 		Log.d(TAG, "OnStart'd");
+		lastLocationUpdate = System.currentTimeMillis();
+		pollForUpdates();
 	}
 
 	private void pollForUpdates() {
@@ -34,18 +39,29 @@ public class TAPService extends Service{
 			@Override
 			public void run() {
 				
-				// TODO: Finna leid til ad tjekka a atburdum i gagnagrunni
-				// Einn moguleiki vaeri ad bua lesa efsta atburd i gagnagrunni
-				// Gengur ekki nema ad gomlum atburdum se reglulega hent ut eda
-				// teir faerdir i adra toflu.
-				// Annar moguleiki vaeri ad lesa alla tofluna og reikna hvar mismunur
-				// startTime atburda og nuverandi tima er minnstur. Ef fyrir innan akvedid
-				// gildi tha alarm.
+				// Check fyrir location update
+				if((System.currentTimeMillis()-lastLocationUpdate)>=locationUpdateInterval) {
+					// GPS call and update current location
+					lastLocationUpdate = System.currentTimeMillis();
+					not.postNotification(3,"Location Update",
+							Long.toString(lastLocationUpdate),System.currentTimeMillis());
+				}
+				// TODO: GPS check
+				// TODO: Database access
+				// TODO: Event check function
 				// TODO: Finna leid til ad senda gogn hedan yfir i main activity
-		    	not.postNotification(2,"ServiceTest", "Success!",System.currentTimeMillis());
+				
+				// Fetch Events within time range
+				// Estimate Travel Time to events within time range with location info
+				// Check events: Compare travel time with current time and start time of events
+				//				within range from previous step. 
+				//				If Current time + travel time >= start time send notification 
+				
+				// Service functionality test
+		    	not.postNotification(2,"ServiceTest", "Success!",System.currentTimeMillis()); 
 
 				}
-		}, 0, UPDATE_INTERVAL);
+		}, 0, notificationCheckInterval);
 	}
 
 	@Override
@@ -54,7 +70,7 @@ public class TAPService extends Service{
 		if (timer != null) {
 			timer.cancel();
 			
-			not.cancelNotification(2);
+			not.cancelNotification(2); // Service functionality test
 		}
 		
 		Log.d(TAG, "OnDestroy'd");
