@@ -26,15 +26,15 @@ public class gpstest extends Activity {
 			String Text = "My current location is: " + loc.getLatitude() + " " + loc.getLongitude();
 			Toast.makeText( getApplicationContext(),Text,Toast.LENGTH_SHORT).show();
 		}
-		@Override
+		//@Override
 		public void onProviderDisabled(String provider) {
 			Toast.makeText( getApplicationContext(),"Gps Disabled",Toast.LENGTH_SHORT ).show();
 		}
-		@Override
+		//@Override
 		public void onProviderEnabled(String provider) { 
 			Toast.makeText( getApplicationContext(),"Gps Enabled",Toast.LENGTH_SHORT).show();
 		}
-		@Override
+		//@Override
 		public void onStatusChanged(String provider, int status, Bundle extras){}
 	}
 }

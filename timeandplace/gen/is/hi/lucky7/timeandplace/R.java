@@ -31,14 +31,9 @@ public final class R {
         public static final int btn_senda=0x7f050009;
         public static final int btn_stadsetning=0x7f050007;
         public static final int btn_upphafstimi=0x7f050005;
-<<<<<<< HEAD
+        public static final int button_gps_test=0x7f05001a;
         public static final int button_start_service=0x7f050018;
         public static final int button_stop_service=0x7f050019;
-=======
-        public static final int button_gps_test=0x7f050018;
-        public static final int button_start_service=0x7f050016;
-        public static final int button_stop_service=0x7f050017;
->>>>>>> e6f89da1b0426a8aaeba1ea892896a8bbfd8664f
         public static final int edi_lysing=0x7f050003;
         public static final int edi_nafn=0x7f050001;
         public static final int event_test_button=0x7f050017;
