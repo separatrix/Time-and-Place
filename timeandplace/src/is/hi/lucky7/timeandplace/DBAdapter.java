@@ -17,7 +17,8 @@ public class DBAdapter {
 	public static final String colName="name";
 	public static final String colStartTime ="start_time";
 	public static final String colEndTime="end_time";
-	public static final String colLocation="location";
+	public static final String colLocLat="locLat";
+	public static final String colLocLon="locLon";
 	public static final String transport ="transport";
 	public static final String colInfo="info";
 	
@@ -46,7 +47,8 @@ public class DBAdapter {
 		cv.put(colName, e.getName());
 		cv.put(colStartTime, e.getStartTime());
 		cv.put(colEndTime, e.getEndTime());
-		cv.put(colLocation, e.getLocation());
+		cv.put(colLocLat, e.getLocLat());
+		cv.put(colLocLon, e.getLocLon());
 		cv.put(transport, e.getTransport());
 		cv.put(colInfo, e.getInfo());
 		
@@ -72,11 +74,12 @@ public class DBAdapter {
 		 String name = c.getString(1);
 		 long start = c.getLong(2);
 		 long end = c.getLong(3);
-		 String loc = c.getString(4);
-		 int trans = c.getInt(5);
-		 String info = c.getString(6);
+		 Double lat = c.getDouble(4);
+		 Double lon = c.getDouble(5);
+		 int trans = c.getInt(6);
+		 String info = c.getString(7);
 		 
-		 Event e = new Event(name, start, end, loc, trans, info);
+		 Event e = new Event(name, start, end, lat, lon, trans, info);
 		 return e;
 	 }
 	 
@@ -106,7 +109,8 @@ public class DBAdapter {
 			cv.put(colName, e.getName());
 			cv.put(colStartTime, e.getStartTime());
 			cv.put(colEndTime, e.getEndTime());
-			cv.put(colLocation, e.getLocation());
+			cv.put(colLocLat, e.getLocLat());
+			cv.put(colLocLon, e.getLocLon());
 			cv.put(transport, e.getTransport());
 			cv.put(colInfo, e.getInfo());
 			

@@ -30,7 +30,7 @@ public class event_test extends Activity{
 		tw3.append(Long.toString(e.getEndTime()));
 		tw4.append(Integer.toString(e.getTransport()));
 		tw5.append(e.getInfo());
-		tw6.append(e.getLocation());
+		tw6.append(Double.toString(e.getLocLat()) + ", " + Double.toString(e.getLocLat()));
 		
 		
 	}

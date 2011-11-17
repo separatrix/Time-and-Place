@@ -6,24 +6,27 @@ public class Event {
 	String _name;
 	long _startTime;
 	long _endTime;
-	String _location;
+	Double _locLat;
+	Double _locLon;
 	int _transport;
 	String _info;
 	
-	public Event(String name, long startTime, long endTime, String location, int transport, String info){
+	public Event(String name, long startTime, long endTime, Double locLat, Double locLon, int transport, String info){
 		this._name = name;
 		this._startTime = startTime;
 		this._endTime = endTime;
-		this._location = location;
+		this._locLat = locLat;
+		this._locLon = locLon;
 		this._transport = transport;
 		this._info = info;
 	}
 	
-	public Event(String name, long startTime, long endTime, String location, String info){
+	public Event(String name, long startTime, long endTime, Double locLat, Double locLon, String info){
 		this._name = name;
 		this._startTime = startTime;
 		this._endTime = endTime;
-		this._location = location;
+		this._locLat = locLat;
+		this._locLon = locLon;
 		this._transport = 0;
 		this._info = info;
 	}
@@ -60,12 +63,20 @@ public class Event {
 			this._endTime = endTime;
 		}
 		
-		public String getLocation() {
-			return this._location;
+		public Double getLocLat() {
+			return this._locLat;
 		}
 		
-		public void setLocation(String location) {
-			this._location = location;
+		public Double getLocLon() {
+			return this._locLon;
+		}
+		
+		public void setLocLat(Double locLat) {
+			this._locLat = locLat;
+		}
+		
+		public void setLocLon(Double locLon) {
+			this._locLon = locLon;
 		}
 		
 		public String getInfo() {
