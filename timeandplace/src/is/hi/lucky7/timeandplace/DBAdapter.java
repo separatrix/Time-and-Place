@@ -74,6 +74,7 @@ public class DBAdapter {
 		 Cursor c = db.rawQuery("SELECT * FROM "+eventTable+" WHERE "+colId+"= " +Integer.toString(id), null);
 		 c.moveToFirst();
 		 // indice 0 is event ID
+		 int evid = c.getInt(0);
 		 String name = c.getString(1);
 		 long start = c.getLong(2);
 		 long end = c.getLong(3);
@@ -89,7 +90,7 @@ public class DBAdapter {
 			 passed = false;
 		 }
 		 
-		 Event e = new Event(name, start, end, lat, lon, trans, info, passed);
+		 Event e = new Event(evid, name, start, end, lat, lon, trans, info, passed);
 		 return e;
 	 }
 	 
@@ -118,7 +119,22 @@ public class DBAdapter {
 			cv.put(colInfo, e.getInfo());
 			cv.put(colPassed, e.getPassed());
 			
-			db.update(eventTable, cv, colId + "=" + e.getId(), null);
+			db.update(eventTable, cv, colId + "=" + Integer.toString(e.getId()), null);
+	 }
+	 
+	 public void updateEventWithId(int id, Event e)
+	 {
+		 ContentValues cv = new ContentValues();
+			cv.put(colName, e.getName());
+			cv.put(colStartTime, e.getStartTime());
+			cv.put(colEndTime, e.getEndTime());
+			cv.put(colLatitude, e.getLatitude());
+			cv.put(colLongitude, e.getLongitude());
+			cv.put(transport, e.getTransport());
+			cv.put(colInfo, e.getInfo());
+			cv.put(colPassed, e.getPassed());
+			
+			db.update(eventTable, cv, colId + "=" + Integer.toString(id), null);
 	 }
 	 
 	 public void deleteEvent(int id) {
