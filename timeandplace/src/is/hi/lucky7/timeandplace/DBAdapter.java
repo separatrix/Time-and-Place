@@ -141,6 +141,14 @@ public class DBAdapter {
 		 db.delete(eventTable,colId+ " = " +id,null);
 	 }
 	 
-	// TODO: Event check function
-	//			check for events within the next 24 hours or similar ... make length of check scalable!
+	 // Adferd til ad tjekka a
+	 Cursor getEventsWithinTimeRange(long range) {
+		 String[] cols = new String[] {colId, colName, colStartTime, colLatitude, colLongitude};
+		 String currTime = Long.toString(System.currentTimeMillis());
+		 String selection = colStartTime + "-" + currTime + "<=" + Long.toString(range) +
+				 " AND " + colPassed + "=0";
+		 Cursor c = db.query(eventTable, cols, selection, null, null, null, null);
+		 
+		 return c;
+	 }
 }

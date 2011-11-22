@@ -20,8 +20,9 @@ public class viewEvent extends ListActivity{
 		fillData();
 	}
 		private void fillData() {
-	        // Get all of the notes from the database and create the item list
+	        // Get all of the Events from the database and create the Event list
 	        Cursor c = dba.getAllEvents();
+			
 	        startManagingCursor(c);
 
 	        String[] from = new String[] { DBAdapter.colName };
@@ -45,5 +46,3 @@ public class viewEvent extends ListActivity{
 	    }
 	
 }
- 
-//Prufa prufa

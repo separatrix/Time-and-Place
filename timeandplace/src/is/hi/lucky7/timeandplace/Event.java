@@ -12,7 +12,6 @@ public class Event {
 	String _info;
 	boolean _passed;
 	
-	// TODO: Change event class to accord for adding latitude, longitude and passed
 	// Smidur fyrir nyskraningu atburda
 	public Event(String name, long startTime, long endTime, double latitude, double longitude, 
 			int transport, String info, boolean passed){

@@ -35,6 +35,8 @@ public class viewOneEvent extends ListActivity {
     public DBAdapter dbadapter;
     public Event ev;
     // TODO: Make viewing location (latitude,longitude) an option
+    // TODO: Fix editing of StartTime, EndTime and Date
+    // TODO: Make deleting and event available
     
     protected Dialog onCreateDialog(int id) {
         switch (id) {

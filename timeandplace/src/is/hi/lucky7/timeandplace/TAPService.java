@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 public class TAPService extends Service{
 	private Timer timer = new Timer();
@@ -47,7 +48,7 @@ public class TAPService extends Service{
 							Long.toString(lastLocationUpdate),System.currentTimeMillis());
 				}
 				
-				// TODO: Database access
+				
 				// TODO: Find a way to send data to main activity for future purposes
 				
 				// Fetch Events within time range
