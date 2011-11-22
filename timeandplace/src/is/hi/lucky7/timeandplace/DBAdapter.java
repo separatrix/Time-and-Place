@@ -117,7 +117,13 @@ public class DBAdapter {
 			cv.put(colLongitude, e.getLongitude());
 			cv.put(transport, e.getTransport());
 			cv.put(colInfo, e.getInfo());
-			cv.put(colPassed, e.getPassed());
+			
+			if(e.getPassed()) {
+				cv.put(colPassed, 1);
+			}
+			else {
+				cv.put(colPassed, 0);
+			}
 			
 			db.update(eventTable, cv, colId + "=" + Integer.toString(e.getId()), null);
 	 }
@@ -143,7 +149,7 @@ public class DBAdapter {
 	 
 	 // Adferd til ad tjekka a
 	 Cursor getEventsWithinTimeRange(long range) {
-		 String[] cols = new String[] {colId, colName, colStartTime, colLatitude, colLongitude};
+		 String[] cols = new String[] {colId, colName, colInfo, colStartTime, colLatitude, colLongitude};
 		 String currTime = Long.toString(System.currentTimeMillis());
 		 String selection = colStartTime + "-" + currTime + "<=" + Long.toString(range) +
 				 " AND " + colPassed + "=0";

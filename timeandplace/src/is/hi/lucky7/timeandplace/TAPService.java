@@ -5,10 +5,10 @@ import java.util.TimerTask;
 
 import android.app.Service;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 public class TAPService extends Service{
 	private Timer timer = new Timer();
@@ -19,6 +19,7 @@ public class TAPService extends Service{
 	private static final long notificationCheckInterval = 10000; // Time between "event in time-range" checks (ms)
 	private long lastLocationUpdate;
 	private DBAdapter dba;
+	private Cursor c;
 	
 		@Override
 	public void onCreate() {
@@ -42,7 +43,7 @@ public class TAPService extends Service{
 				
 				// Location update check
 				if((System.currentTimeMillis()-lastLocationUpdate)>=locationUpdateInterval) {
-					// TODO: GPS check
+					// TODO: GPS check here or change to constant location update
 					lastLocationUpdate = System.currentTimeMillis();
 					not.postNotification(3,"Location Update",
 							Long.toString(lastLocationUpdate),System.currentTimeMillis());
@@ -52,13 +53,45 @@ public class TAPService extends Service{
 				// TODO: Find a way to send data to main activity for future purposes
 				
 				// Fetch Events within time range
+				c = dba.getEventsWithinTimeRange(86400000); // 24*60*60*1000 = 86400000
+				
+				for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+					
+					
+					
+					// TODO: Calculate travel time here. 
+					// If currentTime + travelTime >= startTime make notification
+					int idIndex = c.getColumnIndex(DBAdapter.colId);
+					int nameIndex = c.getColumnIndex(DBAdapter.colName);
+					int infoIndex = c.getColumnIndex(DBAdapter.colInfo);
+					int startIndex = c.getColumnIndex(DBAdapter.colStartTime);
+					int latIndex = c.getColumnIndex(DBAdapter.colLatitude);
+					int lonIndex = c.getColumnIndex(DBAdapter.colLongitude);
+					
+					if(true) {
+						not.postNotification(c.getInt(idIndex), c.getString(nameIndex), 
+								c.getString(infoIndex),c.getLong(startIndex));
+						// Set event status to passed here to begin with
+						// Might be better if it would happen on notification click
+						// in the future
+						
+						Event ev = dba.getEvent(c.getInt(idIndex));
+						ev.setPassed(true);
+						dba.updateEvent(ev);
+						
+					}
+					
+				}
+				
+				//{colId, colName, colStartTime, colLatitude, colLongitude};
+				
 				// Estimate Travel Time to events within time range with location info
 				// Check events: Compare travel time with current time and start time of events
 				//				within range from previous step. 
 				//				If Current time + travel time >= start time send notification 
 				
 				// Service functionality test
-		    	not.postNotification(2,"ServiceTest", "Success!",System.currentTimeMillis()); 
+		    	//not.postNotification(2,"ServiceTest", "Success!",System.currentTimeMillis()); 
 
 				}
 		}, 0, notificationCheckInterval);

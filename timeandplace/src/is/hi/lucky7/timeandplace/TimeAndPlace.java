@@ -1,16 +1,10 @@
 package is.hi.lucky7.timeandplace;
 
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.view.View;
-import android.widget.Toast;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.app.AlarmManager;
+
 
 // TODO: Cleanup!
 
@@ -18,21 +12,11 @@ public class TimeAndPlace extends Activity {
     /** Called when the activity is first created. */
     //@Override
     	private notificationHandler not = new notificationHandler(this);
-    	//private AlarmManager alarm; // Used in the block of code that is commented below
-    	//private TAPService ts;
+    	private DBAdapter dba;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         startService(new Intent(this, TAPService.class));
-        
-        // This piece of test-code runs every 20 seconds
-        /*
-    	Intent tap_intent = new Intent(this, TimeAndPlace.class);
-        PendingIntent runprogram = PendingIntent.getActivity(this, 0, tap_intent, 0);
-        alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+10*1000, 20*1000, runprogram);
-        */
-        
         setContentView(R.layout.main);
         }
     
@@ -82,5 +66,14 @@ public class TimeAndPlace extends Activity {
     	Intent gpstest = new Intent(getApplicationContext(),
     			gpstest.class);
     	startActivity(gpstest);
+    }
+    
+    public void setEvent1NotPassed(View view) {
+		dba = new DBAdapter(this);
+		dba.open();
+		
+		Event ev = dba.getEvent(1);
+		ev.setPassed(false);
+		dba.updateEvent(ev);
     }
 }

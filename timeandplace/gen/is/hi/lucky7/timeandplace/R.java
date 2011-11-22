@@ -31,6 +31,7 @@ public final class R {
         public static final int btn_senda=0x7f050009;
         public static final int btn_stadsetning=0x7f050007;
         public static final int btn_upphafstimi=0x7f050005;
+        public static final int button_event_not_passed=0x7f05001b;
         public static final int button_gps_test=0x7f05001a;
         public static final int button_start_service=0x7f050018;
         public static final int button_stop_service=0x7f050019;

@@ -25,36 +25,47 @@
 		android:id="@+id/alarm_test" 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:onClick="testAlarm">
+		android:onClick="testAlarm" 
+		android:visibility="gone">
 		</Button>
 <Button android:text="@string/cancel_alarm_test_button" 
 		android:id="@+id/alarm_cancel_test" 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:onClick="cancelAlarmTest">
+		android:onClick="cancelAlarmTest"
+		android:visibility="gone">
 		</Button>
 <Button android:text="@string/event_test_button" 
 		android:id="@+id/event_test_button" 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:onClick="ViewEventTest">
+		android:onClick="ViewEventTest"
+		android:visibility="gone">
 		</Button>
 <Button android:text="@string/button_start_service_test" 
 		android:id="@+id/button_start_service" 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:onClick="startServiceTest">
+		android:onClick="startServiceTest"
+		android:visibility="gone">
 		</Button>
 <Button android:text="@string/button_stop_service_test" 
 		android:id="@+id/button_stop_service" 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:onClick="stopServiceTest">
+		android:onClick="stopServiceTest"
+		android:visibility="gone">
 		</Button>
 <Button android:text="GPS test" 
 		android:id="@+id/button_gps_test" 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
 		android:onClick="gpsTest">
+		</Button>
+<Button android:text="Set event with ID=1 as not passed" 
+		android:id="@+id/button_event_not_passed" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:onClick="setEvent1NotPassed">
 		</Button>
 </LinearLayout>
