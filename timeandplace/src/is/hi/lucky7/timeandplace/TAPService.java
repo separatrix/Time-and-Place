@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
+import is.hi.lucky7.timeandplace.router;
 
 public class TAPService extends Service{
 	private Timer timer = new Timer();
@@ -27,7 +28,11 @@ public class TAPService extends Service{
 	// Set the initial co-ordinates to the Icelandic Phallic Museum
 	private double lat=64.14310;
 	private double lon=-21.9146;
-	
+	private long travelTimeToEvent;
+	private double desLat;
+	private double desLon;
+	private double avgSpeed;
+	private long[] speedInMetersPerSec = new long[] {10, 3, 1};
 	
 		@Override
 	public void onCreate() {
@@ -61,8 +66,8 @@ public class TAPService extends Service{
 					// TODO: Calculate travel time here. 
 					// Estimate Travel Time to events within time range with location info
 					// Where the double precision numbers lat and lon are the current location
-					// and c.getLong(latIndex) is the location latitude
-					// and c.getLong(lonIndex) is the location longitude
+					// and c.getDouble(latIndex) is the location latitude
+					// and c.getDouble(lonIndex) is the location longitude
 					
 					// TODO: change if expression below to something like:
 					// if(currentTime + travelTimeToEvent >= startTimeOfEvent)  -> make notification
@@ -72,8 +77,15 @@ public class TAPService extends Service{
 					int startIndex = c.getColumnIndex(DBAdapter.colStartTime);
 					int latIndex = c.getColumnIndex(DBAdapter.colLatitude);
 					int lonIndex = c.getColumnIndex(DBAdapter.colLongitude);
+					int transportIndex = c.getColumnIndex(DBAdapter.transport);
 					
-					if(true) {
+					desLat = c.getDouble(latIndex);
+					desLon = c.getDouble(lonIndex);
+					avgSpeed = speedInMetersPerSec[c.getInt(transportIndex)]; 
+					
+					travelTimeToEvent = router.SimpleFindTime(lat, lon, desLat, desLon, avgSpeed);
+					
+					if(System.currentTimeMillis()+travelTimeToEvent >= c.getLong(startIndex)) {
 						not.postNotification(c.getInt(idIndex), c.getString(nameIndex), 
 								c.getString(infoIndex),c.getLong(startIndex));
 

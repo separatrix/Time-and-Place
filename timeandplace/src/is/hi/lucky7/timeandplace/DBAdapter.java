@@ -149,7 +149,7 @@ public class DBAdapter {
 	 
 	 // Adferd til ad tjekka a
 	 Cursor getEventsWithinTimeRange(long range) {
-		 String[] cols = new String[] {colId, colName, colInfo, colStartTime, colLatitude, colLongitude};
+		 String[] cols = new String[] {colId, colName, colInfo, colStartTime, colLatitude, colLongitude, transport};
 		 String currTime = Long.toString(System.currentTimeMillis());
 		 String selection = colStartTime + "-" + currTime + "<=" + Long.toString(range) +
 				 " AND " + colPassed + "=0";

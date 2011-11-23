@@ -8,7 +8,7 @@ public class router {
 	 * Simplified method to find the time it takes to travel between two coordinates, given an average speed.
 	 */
 	
-	public int SimpleFindTime(double srcLat, double srcLon, double desLat, double desLon, double avgSpeed)
+	public static long SimpleFindTime(double srcLat, double srcLon, double desLat, double desLon, double avgSpeed)
 	{
 		// Let's begin by converting the numbers we need to radians.
 		double dLat = Math.toRadians(desLat - srcLat);
@@ -22,10 +22,10 @@ public class router {
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 		double d = 6371 * c;
 		
-		// Factor in the average speed, and return the time in seconds.
+		// Factor in the average speed, and return the time in milliseconds.
 		double t = d / avgSpeed;
-		int secs = (int)(t * 60 * 60);
-		return secs;
+		long msecs = (long)(t * 60 * 60 * 1000);
+		return msecs;
 	}
 	
 }
