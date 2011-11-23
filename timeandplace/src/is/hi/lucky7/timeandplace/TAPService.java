@@ -1,7 +1,5 @@
 package is.hi.lucky7.timeandplace;
 
-import is.hi.lucky7.timeandplace.gpstest.MyLocationListener;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -23,11 +21,13 @@ public class TAPService extends Service{
 	private final IBinder mBinder = new MyBinder();
 	private notificationHandler not = new notificationHandler(this);
 	private static String TAG = TAPService.class.getSimpleName();
-	private static final long locationUpdateInterval = 60000; // Time between GPS updates (ms)
 	private static final long notificationCheckInterval = 10000; // Time between "event in time-range" checks (ms)
-	private long lastLocationUpdate;
 	private DBAdapter dba;
 	private Cursor c;
+	// Set the initial co-ordinates to the Icelandic Phallic Museum
+	private double lat=64.14310;
+	private double lon=-21.9146;
+	
 	
 		@Override
 	public void onCreate() {
@@ -44,7 +44,6 @@ public class TAPService extends Service{
 		LocationListener mlocListener = new MyLocationListener();
 		mlocManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 0, 0, mlocListener); 
 		Log.d(TAG, "OnStart'd");
-		lastLocationUpdate = System.currentTimeMillis();
 		pollForUpdates();
 	}
 
@@ -53,26 +52,20 @@ public class TAPService extends Service{
 			@Override
 			public void run() {
 				
-				// Location update check
-				if((System.currentTimeMillis()-lastLocationUpdate)>=locationUpdateInterval) {
-					// TODO: GPS check here or change to constant location update
-					lastLocationUpdate = System.currentTimeMillis();
-					not.postNotification(3,"Location Update",
-							Long.toString(lastLocationUpdate),System.currentTimeMillis());
-				}
-				
-				
-				// TODO: Find a way to send data to main activity for future purposes
-				
 				// Fetch Events within time range
 				c = dba.getEventsWithinTimeRange(86400000); // 24*60*60*1000 = 86400000
 				
+				// Cycle through Events within range
 				for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 					
-					
-					
 					// TODO: Calculate travel time here. 
-					// If currentTime + travelTime >= startTime make notification
+					// Estimate Travel Time to events within time range with location info
+					// Where the double precision numbers lat and lon are the current location
+					// and c.getLong(latIndex) is the location latitude
+					// and c.getLong(lonIndex) is the location longitude
+					
+					// TODO: change if expression below to something like:
+					// if(currentTime + travelTimeToEvent >= startTimeOfEvent)  -> make notification
 					int idIndex = c.getColumnIndex(DBAdapter.colId);
 					int nameIndex = c.getColumnIndex(DBAdapter.colName);
 					int infoIndex = c.getColumnIndex(DBAdapter.colInfo);
@@ -83,28 +76,17 @@ public class TAPService extends Service{
 					if(true) {
 						not.postNotification(c.getInt(idIndex), c.getString(nameIndex), 
 								c.getString(infoIndex),c.getLong(startIndex));
+
 						// Set event status to passed here to begin with
 						// Might be better if it would happen on notification click
 						// in the future
 						
 						Event ev = dba.getEvent(c.getInt(idIndex));
 						ev.setPassed(true);
-						dba.updateEvent(ev);
-						
-					}
-					
+						dba.updateEvent(ev);	
+					}	
 				}
 				
-				//{colId, colName, colStartTime, colLatitude, colLongitude};
-				
-				// Estimate Travel Time to events within time range with location info
-				// Check events: Compare travel time with current time and start time of events
-				//				within range from previous step. 
-				//				If Current time + travel time >= start time send notification 
-				
-				// Service functionality test
-		    	//not.postNotification(2,"ServiceTest", "Success!",System.currentTimeMillis()); 
-
 				}
 		}, 0, notificationCheckInterval);
 	}
@@ -113,9 +95,7 @@ public class TAPService extends Service{
 	public void onDestroy() {
 		super.onDestroy();
 		if (timer != null) {
-			timer.cancel();
-			
-			not.cancelNotification(2); // Service functionality test
+			timer.cancel();			
 		}
 		
 		Log.d(TAG, "OnDestroy'd");
@@ -133,10 +113,11 @@ public class TAPService extends Service{
 	}
 	public class MyLocationListener implements LocationListener {
 		public void onLocationChanged(Location loc) {
-			loc.getLatitude();
-			loc.getLongitude();
-			String Text = "My current location is: " + loc.getLatitude() + " " + loc.getLongitude();
-			Toast.makeText( getApplicationContext(),Text,Toast.LENGTH_SHORT).show();
+			lat = loc.getLatitude();
+			lon = loc.getLongitude();
+			// Print the location to screen for testing purposes
+			//String Text = "My current location is: " + loc.getLatitude() + " " + loc.getLongitude();
+			//Toast.makeText( getApplicationContext(),Text,Toast.LENGTH_SHORT).show();
 		}
 		//@Override
 		public void onProviderDisabled(String provider) {
