@@ -1,14 +1,22 @@
 package is.hi.lucky7.timeandplace;
 
+import is.hi.lucky7.timeandplace.gpstest.MyLocationListener;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 public class TAPService extends Service{
 	private Timer timer = new Timer();
@@ -27,10 +35,14 @@ public class TAPService extends Service{
 		Log.d(TAG, "OnCreate'd");
 		dba = new DBAdapter(this);
 		dba.open();
+		/* Use the LocationManager class to obtain GPS locations */
 	}
 		@Override
 	public void onStart(Intent intent, int startId){
 		super.onStart(intent, startId);
+		LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		LocationListener mlocListener = new MyLocationListener();
+		mlocManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 0, 0, mlocListener); 
 		Log.d(TAG, "OnStart'd");
 		lastLocationUpdate = System.currentTimeMillis();
 		pollForUpdates();
@@ -118,5 +130,26 @@ public class TAPService extends Service{
 		TAPService getService() {
 			return TAPService.this;
 		}
-	}	
+	}
+	public class MyLocationListener implements LocationListener {
+		public void onLocationChanged(Location loc) {
+			loc.getLatitude();
+			loc.getLongitude();
+			String Text = "My current location is: " + loc.getLatitude() + " " + loc.getLongitude();
+			Toast.makeText( getApplicationContext(),Text,Toast.LENGTH_SHORT).show();
+		}
+		//@Override
+		public void onProviderDisabled(String provider) {
+			Toast.makeText( getApplicationContext(),"Gps Disabled",Toast.LENGTH_SHORT ).show();
+		}
+		//@Override
+		public void onProviderEnabled(String provider) { 
+			Toast.makeText( getApplicationContext(),"Gps Enabled",Toast.LENGTH_SHORT).show();
+		}
+		//@Override
+		public void onStatusChanged(String provider, int status, Bundle extras){}
+		public double getLon(Location loc) {
+			return loc.getLongitude();
+		}
+	}
 }
