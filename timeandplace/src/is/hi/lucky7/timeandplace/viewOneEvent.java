@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,7 +15,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import is.hi.lucky7.timeandplace.Event;
@@ -35,11 +39,21 @@ public class viewOneEvent extends ListActivity {
     public DBAdapter dbadapter;
     public Event ev;
     // TODO: Make viewing location (latitude,longitude) an option
-    // TODO: Fix editing of StartTime, EndTime and Date
-    // TODO: Make deleting and event available
     
     protected Dialog onCreateDialog(int id) {
         switch (id) {
+        //case 0:
+        //	Toast.makeText( getApplicationContext(),"Gps Enabled",Toast.LENGTH_SHORT).show();
+        //	Context mContext = getApplicationContext();
+        //	Dialog dialog = new Dialog(mContext);
+
+       // 	dialog.setContentView(R.layout.dia_nafn);
+        	//dialog.setTitle("Custom Dialog");
+      //  	dialog.show();
+        	//TextView text = (TextView) dialog.findViewById(R.id.text);
+        	//text.setText("Hello, this is a custom dialog!");
+        	//showDialog(dialog);
+        		
         //Dagsetningar dialog
         case 2:
             return new DatePickerDialog(this,
@@ -131,7 +145,19 @@ public class viewOneEvent extends ListActivity {
     	//Ná í það sem ýtt var á.
     	Object o = this.getListAdapter().getItemId(position);
     	String numer = o.toString();
+    	int numerint = Integer.parseInt(numer);
+    	if (numer == "7") {
+    		dbadapter.deleteEvent(ev.getId());
+    	}
+    	else if (numerint == 0) { 
+    		customName();
+    	}
+    	else if (numerint == 1) { 
+    		customLysing();
+    	}
+    	else {
     	showDialog(Integer.parseInt(numer));
+    	}
     } 
     public void uppfaeraFerdamata(int ferdamati) {
     	ev.setTransport(ferdamati);
@@ -149,8 +175,25 @@ public class viewOneEvent extends ListActivity {
     	ev.setInfo(lysing);
     	dbadapter.updateEvent(ev);
     }
-    public void uppfaeraNafn(String nafn) {
-    	ev.setInfo(nafn);
+    public void customName() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dia_nafn);
+        dialog.setTitle("Nafn");
+        EditText txtNewText = (EditText) dialog.findViewById(R.id.txtNewText);
+        txtNewText.setText(ev.getName());
+        dialog.show();
+            }
+    public void customLysing() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dia_nafn);
+        dialog.setTitle("Lýsing");
+        EditText txtNewText = (EditText) dialog.findViewById(R.id.txtNewText);
+        txtNewText.setText(ev.getInfo());
+        dialog.show();
+            }
+    public void uppfaeraNafn(View view) {
+    	//EditText txtNewText = (EditText) dialog.findViewById(R.id.txtNewText);
+    	//ev.setName(txtNewText.getText());
     	dbadapter.updateEvent(ev);
     }
 }

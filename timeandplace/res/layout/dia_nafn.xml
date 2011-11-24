@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+android:id="@+id/layout_root"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:padding="10dp"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<Button
+android:id="@+id/btnConfirm"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Add text"
+android:layout_below="@+id/txtNewText"
+android:layout_alignParentLeft="true"
+android:onClick="uppfaeraNafn"
+>
+</Button>
+<EditText
+android:id="@+id/txtNewText"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:textSize="18sp"
+android:layout_alignParentTop="true"
+android:layout_alignParentLeft="true"
+>
+</EditText>
+</RelativeLayout>
