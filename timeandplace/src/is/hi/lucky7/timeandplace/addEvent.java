@@ -2,7 +2,16 @@ package is.hi.lucky7.timeandplace;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.List;
 
+import org.osmdroid.api.IGeoPoint;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapController;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.Overlay;
+
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -15,6 +24,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.View;
 import is.hi.lucky7.timeandplace.Event;
 import is.hi.lucky7.timeandplace.DBAdapter;
@@ -65,38 +75,10 @@ public class addEvent extends Activity{
             			}
             })
             .create();
-    	case 4:
-    		LinearLayout linLay = new LinearLayout(this);
-    		final EditText lat = new EditText(this);
-    		lat.setHint("Latitude");
-    		final EditText lon = new EditText(this);
-    		lon.setHint("Longitude");
-    		linLay.addView(lat);
-    		linLay.addView(lon);
-    		return new AlertDialog.Builder(this)
-    			.setTitle("Staðsetning")
-    			.setMessage("Veldu hnit")
-    			.setView(linLay)
-    			.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-    				public void onClick(DialogInterface dialog, int whichButton) {
-    					try {
-    						hnitLat = Double.parseDouble(lat.getText().toString());
-    						hnitLon = Double.parseDouble(lon.getText().toString());
-    					} catch (NumberFormatException e) {
-    						hnitLat = null;
-    						hnitLon = null;
-    						// Villuboð
-    						hnitVilla();
-    					}
-    				}
-    			}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {					
-					public void onClick(DialogInterface dialog, int whichButton) {
-						// Do Nothing						
-					}
-				}).show();
         }
         return null;
     }
+    
     //Dagsetning
     private DatePickerDialog.OnDateSetListener veljadag =
             new DatePickerDialog.OnDateSetListener() {
@@ -173,23 +155,25 @@ public class addEvent extends Activity{
     	showDialog(3);
     	    }
     public void fStads(View view) {
-    	showDialog(4);
+    	startActivityForResult(
+    			new Intent(getApplicationContext(), Map.class),
+    			0);
     		}
     public long toTimestamp(int ar, int man, int dagur, int klst, int min) {
     	Calendar c = Calendar.getInstance();
     	c.set(ar,man,dagur,klst,min);
     	return c.getTimeInMillis();
     }
-    
-    public void hnitVilla () {
-    	new AlertDialog.Builder(this)
-			.setTitle("Villa")
-			.setMessage("Hnit verða að vera tölur.")
-			.setPositiveButton("Ok", new DialogInterface.OnClickListener() {					
-				public void onClick(DialogInterface dialog, int which) {
-					// Nothing						
-				}
-			}).show();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	if (requestCode == 0 && resultCode == 1) {
+    		Bundle b = data.getExtras();
+    		try {
+    			hnitLat = (double) b.getInt("lat");
+    			hnitLon = (double) b.getInt("lon");
+    		} catch (Exception e) {
+    		}
+    		
+    	}
     }
 }
 

@@ -4,5 +4,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry kind="lib" path="F:/android_dev/osmdroid-android-3.0.5.jar"/>
+	<classpathentry kind="lib" path="F:/android_dev/osmdroid2/osmdroid-android/lib/slf4j-android-1.5.8.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
