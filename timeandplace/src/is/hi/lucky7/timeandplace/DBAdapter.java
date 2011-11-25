@@ -78,8 +78,8 @@ public class DBAdapter {
 		 String name = c.getString(1);
 		 long start = c.getLong(2);
 		 long end = c.getLong(3);
-		 double lat = c.getDouble(4);
-		 double lon = c.getDouble(5);
+		 int lat = c.getInt(4);
+		 int lon = c.getInt(5);
 		 int trans = c.getInt(6);
 		 String info = c.getString(7);
 		 boolean passed = false;

@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -31,6 +32,8 @@ public class viewOneEvent extends ListActivity {
     private int s_klst;
     private int s_min;
     private int ferdamati;
+    private int hnitLat;
+    private int hnitLon;
     public DBAdapter dbadapter;
     public Event ev;
     
@@ -140,6 +143,9 @@ public class viewOneEvent extends ListActivity {
     	else if (numerint == 1) { 
     		customLysing();
     	}
+    	else if (numerint == 5) {
+    		customStads();
+    	}
     	else {
     	showDialog(Integer.parseInt(numer));
     	}
@@ -197,24 +203,27 @@ public class viewOneEvent extends ListActivity {
         dialog.show();
             }
     public void customStads() {
-        Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dia_stads);
-        dialog.setTitle("Lýsing");
-        final EditText newlon = (EditText) dialog.findViewById(R.id.txtlat);
-        final EditText newlat = (EditText) dialog.findViewById(R.id.txtlon);
-        newlon.setText(Double.toString(ev.getLongitude()));
-        newlat.setText(Double.toString(ev.getLatitude()));
-        Button loka = (Button) dialog.findViewById(R.id.btnConfirm);
-        loka.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                	ev.setLatitude(Double.parseDouble(newlat.getText().toString()));
-                	ev.setLongitude(Double.parseDouble(newlon.getText().toString()));
-                	dbadapter.updateEvent(ev);
-                	finish();
-                }
-            });
-        dialog.show();
+    	startActivityForResult(
+    			new Intent(getApplicationContext(), Map.class),
+    			0);
             }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	if (requestCode == 0 && resultCode == 1) {
+    		Bundle b = data.getExtras();
+    		try {
+    			hnitLat = b.getInt("lat");
+    			hnitLon = b.getInt("lon");
+    			ev.setLatitude(hnitLat);
+    			ev.setLongitude(hnitLon);
+    			dbadapter.updateEvent(ev);
+    			AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+    			dialog.setTitle("Hnit");
+    			dialog.setMessage("Valin hnit eru: "+hnitLat+", "+hnitLon);
+    			dialog.show();
+    		} catch (Exception e) {
+    		}    		
+    	}
+    }
     public long toTimestamp(int ar, int man, int dagur, int klst, int min) {
     	Calendar c = Calendar.getInstance();
     	c.set(ar,man,dagur,klst,min);

@@ -32,8 +32,8 @@ public class addEvent extends Activity{
     private int s_klst;
     private int s_min;
     private int ferdamati;
-	private Double hnitLat;
-	private Double hnitLon;
+	private int hnitLat;
+	private int hnitLon;
     
     protected Dialog onCreateDialog(int id) {
     	// TODO: Færa strengi í strings.xml
@@ -119,8 +119,8 @@ public class addEvent extends Activity{
     	String lysing = edit_lysing.getText().toString();
     	long fyrritimi = toTimestamp(ar,man,dagur,f_klst,f_min);
     	long seinnitimi = toTimestamp(ar,man,dagur,s_klst,s_min);
-    	double latitude = hnitLat;
-    	double longitude = hnitLon;
+    	int latitude = hnitLat;
+    	int longitude = hnitLon;
     	boolean tempPass = false;
     	// Herna vantar villutjekk. Forritid crashar ef null gildi eru skrad inn i event
     	// thar sem dalkar in gagnagrunn eru restricted vid NOT NULL gildi.
@@ -156,11 +156,14 @@ public class addEvent extends Activity{
     	if (requestCode == 0 && resultCode == 1) {
     		Bundle b = data.getExtras();
     		try {
-    			hnitLat = (double) b.getInt("lat");
-    			hnitLon = (double) b.getInt("lon");
+    			hnitLat = b.getInt("lat");
+    			hnitLon = b.getInt("lon");
+    			AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+    			dialog.setTitle("Hnit");
+    			dialog.setMessage("Valin hnit eru: "+hnitLat+", "+hnitLon);
+    			dialog.show();
     		} catch (Exception e) {
-    		}
-    		
+    		}    		
     	}
     }
 }

@@ -6,14 +6,14 @@ public class Event {
 	String _name;
 	long _startTime;
 	long _endTime;
-	double _latitude;
-	double _longitude;
+	int _latitude;
+	int _longitude;
 	int _transport;
 	String _info;
 	boolean _passed;
 	
 	// Smidur fyrir nyskraningu atburda
-	public Event(String name, long startTime, long endTime, double latitude, double longitude, 
+	public Event(String name, long startTime, long endTime, int latitude, int longitude, 
 			int transport, String info, boolean passed){
 		this._name = name;
 		this._startTime = startTime;
@@ -26,7 +26,7 @@ public class Event {
 	}
 	
 	// Smidur fyrir lestur ur gagnagrunni og editing
-	public Event(int id, String name, long startTime, long endTime, double latitude, double longitude, 
+	public Event(int id, String name, long startTime, long endTime, int latitude, int longitude, 
 			int transport, String info, boolean passed){
 		this._id = id;
 		this._name = name;
@@ -81,19 +81,19 @@ public class Event {
 		public void setEndTime(long endTime) {
 			this._endTime = endTime;
 		}
-		public double getLatitude() {
+		public int getLatitude() {
 			return this._latitude;
 		}
 		
-		public void setLatitude(double latitude) {
+		public void setLatitude(int latitude) {
 			this._latitude = latitude;
 		}
 		
-		public double getLongitude() {
+		public int getLongitude() {
 			return this._longitude;
 		}
 		
-		public void setLongitude(double longitude) {
+		public void setLongitude(int longitude) {
 			this._longitude = longitude;
 		}
 		
