@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
 public class viewEvent extends ListActivity{
 		private DBAdapter dba;

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+android:id="@+id/layout_root"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:padding="10dp"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<TextView 
+    android:id="@+id/txt_lon"
+    android:layout_marginTop="1px" 
+    android:textSize="18px" 
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="Lengdargráða:" 
+    android:layout_alignParentTop="true"
+	android:layout_alignParentLeft="true">
+</TextView>
+<EditText android:layout_height="wrap_content" android:id="@+id/txtlat" android:layout_width="fill_parent" android:textSize="18sp" android:layout_below="@+id/txt_lon" android:layout_alignLeft="@+id/txt_lon">
+</EditText>
+<TextView android:layout_height="wrap_content" android:layout_width="fill_parent" android:text="Breiddargráða:" android:textSize="18px" android:id="@+id/txt_lat" android:layout_below="@+id/txtlat" android:layout_alignLeft="@+id/txtlat"></TextView>
+<EditText android:layout_height="wrap_content" android:id="@+id/txtlon" android:layout_width="fill_parent" android:textSize="18sp" android:layout_below="@+id/txt_lat" android:layout_alignLeft="@+id/txt_lat"></EditText>
+<Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/btnConfirm" android:text="Uppfæra" android:layout_below="@+id/txtlon" android:layout_alignLeft="@+id/txtlon"></Button>
+</RelativeLayout>

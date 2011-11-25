@@ -7,20 +7,15 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 import is.hi.lucky7.timeandplace.Event;
 
 public class viewOneEvent extends ListActivity {
@@ -38,22 +33,9 @@ public class viewOneEvent extends ListActivity {
     private int ferdamati;
     public DBAdapter dbadapter;
     public Event ev;
-    // TODO: Make viewing location (latitude,longitude) an option
     
     protected Dialog onCreateDialog(int id) {
         switch (id) {
-        //case 0:
-        //	Toast.makeText( getApplicationContext(),"Gps Enabled",Toast.LENGTH_SHORT).show();
-        //	Context mContext = getApplicationContext();
-        //	Dialog dialog = new Dialog(mContext);
-
-       // 	dialog.setContentView(R.layout.dia_nafn);
-        	//dialog.setTitle("Custom Dialog");
-      //  	dialog.show();
-        	//TextView text = (TextView) dialog.findViewById(R.id.text);
-        	//text.setText("Hello, this is a custom dialog!");
-        	//showDialog(dialog);
-        		
         //Dagsetningar dialog
         case 2:
             return new DatePickerDialog(this,
@@ -91,6 +73,7 @@ public class viewOneEvent extends ListActivity {
                     ar = year;
                     man = monthOfYear;
                     dagur = dayOfMonth;
+                    uppfaeraDagsetningu(toTimestamp(ar, man, dagur, f_klst, f_min));
                 }
             };
     //Fyrrra skiptið sem tíminn birtist
@@ -99,6 +82,7 @@ public class viewOneEvent extends ListActivity {
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 	f_klst = hourOfDay;
                 	f_min = minute;
+                	uppfaeraFyrritima(toTimestamp(ar, man, dagur, f_klst, f_min));
                 }
             };
     //Seinna skiptið sem tíminn birtist
@@ -107,6 +91,7 @@ public class viewOneEvent extends ListActivity {
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     s_klst = hourOfDay;
                     s_min = minute;
+                    uppfaeraSeinnitima(toTimestamp(ar, man, dagur, s_klst, s_min));
                         }
                     }; 
     
@@ -146,7 +131,7 @@ public class viewOneEvent extends ListActivity {
     	Object o = this.getListAdapter().getItemId(position);
     	String numer = o.toString();
     	int numerint = Integer.parseInt(numer);
-    	if (numer == "7") {
+    	if (numerint == 0) {
     		dbadapter.deleteEvent(ev.getId());
     	}
     	else if (numerint == 0) { 
@@ -171,6 +156,10 @@ public class viewOneEvent extends ListActivity {
     	ev.setEndTime(timi);
     	dbadapter.updateEvent(ev);
     }
+    public void uppfaeraDagsetningu(long timi) {
+    	ev.setStartTime(timi);
+    	dbadapter.updateEvent(ev);
+    }
     public void uppfaeraLysingu(String lysing) {
     	ev.setInfo(lysing);
     	dbadapter.updateEvent(ev);
@@ -179,21 +168,56 @@ public class viewOneEvent extends ListActivity {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dia_nafn);
         dialog.setTitle("Nafn");
-        EditText txtNewText = (EditText) dialog.findViewById(R.id.txtNewText);
+        final EditText txtNewText = (EditText) dialog.findViewById(R.id.txtNewText);
         txtNewText.setText(ev.getName());
+        Button loka = (Button) dialog.findViewById(R.id.btnConfirm);
+        loka.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                	ev.setName(txtNewText.getText().toString());
+                	dbadapter.updateEvent(ev);
+                	finish();
+                }
+            });
         dialog.show();
             }
     public void customLysing() {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dia_nafn);
         dialog.setTitle("Lýsing");
-        EditText txtNewText = (EditText) dialog.findViewById(R.id.txtNewText);
+        final EditText txtNewText = (EditText) dialog.findViewById(R.id.txtNewText);
         txtNewText.setText(ev.getInfo());
+        Button loka = (Button) dialog.findViewById(R.id.btnConfirm);
+        loka.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                	ev.setInfo(txtNewText.getText().toString());
+                	dbadapter.updateEvent(ev);
+                	finish();
+                }
+            });
         dialog.show();
             }
-    public void uppfaeraNafn(View view) {
-    	//EditText txtNewText = (EditText) dialog.findViewById(R.id.txtNewText);
-    	//ev.setName(txtNewText.getText());
-    	dbadapter.updateEvent(ev);
+    public void customStads() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dia_stads);
+        dialog.setTitle("Lýsing");
+        final EditText newlon = (EditText) dialog.findViewById(R.id.txtlat);
+        final EditText newlat = (EditText) dialog.findViewById(R.id.txtlon);
+        newlon.setText(Double.toString(ev.getLongitude()));
+        newlat.setText(Double.toString(ev.getLatitude()));
+        Button loka = (Button) dialog.findViewById(R.id.btnConfirm);
+        loka.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                	ev.setLatitude(Double.parseDouble(newlat.getText().toString()));
+                	ev.setLongitude(Double.parseDouble(newlon.getText().toString()));
+                	dbadapter.updateEvent(ev);
+                	finish();
+                }
+            });
+        dialog.show();
+            }
+    public long toTimestamp(int ar, int man, int dagur, int klst, int min) {
+    	Calendar c = Calendar.getInstance();
+    	c.set(ar,man,dagur,klst,min);
+    	return c.getTimeInMillis();
     }
 }

@@ -1,13 +1,10 @@
 package is.hi.lucky7.timeandplace;
 
-import java.sql.Timestamp;
 import java.util.Calendar;
-
 import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.widget.Toast;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
