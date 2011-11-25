@@ -4,6 +4,7 @@ import java.util.Calendar;
 import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,6 +12,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.View;
 import is.hi.lucky7.timeandplace.Event;
 import is.hi.lucky7.timeandplace.DBAdapter;
@@ -30,8 +32,11 @@ public class addEvent extends Activity{
     private int s_klst;
     private int s_min;
     private int ferdamati;
+	private Double hnitLat;
+	private Double hnitLon;
     
     protected Dialog onCreateDialog(int id) {
+    	// TODO: Færa strengi í strings.xml
         switch (id) {
         //Dagsetningar dialog
         case 0:
@@ -61,6 +66,7 @@ public class addEvent extends Activity{
         }
         return null;
     }
+    
     //Dagsetning
     private DatePickerDialog.OnDateSetListener veljadag =
             new DatePickerDialog.OnDateSetListener() {
@@ -113,15 +119,15 @@ public class addEvent extends Activity{
     	String lysing = edit_lysing.getText().toString();
     	long fyrritimi = toTimestamp(ar,man,dagur,f_klst,f_min);
     	long seinnitimi = toTimestamp(ar,man,dagur,s_klst,s_min);
-    	double tempLat = 0.0;
-    	double tempLon = 0.0;
+    	double latitude = hnitLat;
+    	double longitude = hnitLon;
     	boolean tempPass = false;
     	// Herna vantar villutjekk. Forritid crashar ef null gildi eru skrad inn i event
     	// thar sem dalkar in gagnagrunn eru restricted vid NOT NULL gildi.
     	// Tharf ad passa ad name, start_time, end_time og transport seu ekki null.
     	// Spurning um ad passa lika upp a location upp a seinni tima
     	
-    	Event e = new Event(nafn,fyrritimi,seinnitimi,tempLat,tempLon,ferdamati,lysing,tempPass);
+    	Event e = new Event(nafn,fyrritimi,seinnitimi,latitude,longitude,ferdamati,lysing,tempPass);
     	dbAdapter.AddEvent(e); 
     	}
     public void fDag(View view) {
@@ -136,10 +142,26 @@ public class addEvent extends Activity{
     public void fFerda(View view) {
     	showDialog(3);
     	    }
+    public void fStads(View view) {
+    	startActivityForResult(
+    			new Intent(getApplicationContext(), Map.class),
+    			0);
+    		}
     public long toTimestamp(int ar, int man, int dagur, int klst, int min) {
     	Calendar c = Calendar.getInstance();
     	c.set(ar,man,dagur,klst,min);
     	return c.getTimeInMillis();
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	if (requestCode == 0 && resultCode == 1) {
+    		Bundle b = data.getExtras();
+    		try {
+    			hnitLat = (double) b.getInt("lat");
+    			hnitLon = (double) b.getInt("lon");
+    		} catch (Exception e) {
+    		}
+    		
+    	}
     }
 }
 

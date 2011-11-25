@@ -40,6 +40,7 @@ public final class R {
         public static final int edi_nafn=0x7f050001;
         public static final int event_test_button=0x7f05001e;
         public static final int layout_root=0x7f05000a;
+        public static final int mapview=0x7f050023;
         public static final int text_row=0x7f050012;
         public static final int txtNewText=0x7f05000c;
         public static final int txt_lat=0x7f05000f;
@@ -58,8 +59,9 @@ public final class R {
         public static final int event_test=0x7f030004;
         public static final int gps=0x7f030005;
         public static final int main=0x7f030006;
-        public static final int viewevent=0x7f030007;
-        public static final int viewoneevent=0x7f030008;
+        public static final int map=0x7f030007;
+        public static final int viewevent=0x7f030008;
+        public static final int viewoneevent=0x7f030009;
     }
     public static final class string {
         public static final int Endtime=0x7f040006;

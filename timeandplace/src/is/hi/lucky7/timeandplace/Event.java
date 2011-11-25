@@ -24,6 +24,7 @@ public class Event {
 		this._info = info;
 		this._passed = passed; 
 	}
+	
 	// Smidur fyrir lestur ur gagnagrunni og editing
 	public Event(int id, String name, long startTime, long endTime, double latitude, double longitude, 
 			int transport, String info, boolean passed){
@@ -42,7 +43,8 @@ public class Event {
 		this._name = name;
 		this._startTime = startTime;
 		this._endTime = endTime;
-		this._location = location;
+		this._locLat = locLat;
+		this._locLon = locLon;
 		this._transport = 0;
 		this._info = info;
 	}
@@ -79,7 +81,6 @@ public class Event {
 		public void setEndTime(long endTime) {
 			this._endTime = endTime;
 		}
-		
 		public double getLatitude() {
 			return this._latitude;
 		}
